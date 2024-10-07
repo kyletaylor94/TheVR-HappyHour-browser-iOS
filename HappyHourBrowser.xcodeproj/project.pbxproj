@@ -1,0 +1,604 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		98A0FF442CB3DF8600A01E7E /* SwiftfulLoadingIndicators in Frameworks */ = {isa = PBXBuildFile; productRef = 98A0FF432CB3DF8600A01E7E /* SwiftfulLoadingIndicators */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		98A0FE7F2CB30E1700A01E7E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 98A0FE612CB30E1500A01E7E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 98A0FE682CB30E1500A01E7E;
+			remoteInfo = HappyHourBrowser;
+		};
+		98A0FE892CB30E1700A01E7E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 98A0FE612CB30E1500A01E7E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 98A0FE682CB30E1500A01E7E;
+			remoteInfo = HappyHourBrowser;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		98A0FE692CB30E1500A01E7E /* HappyHourBrowser.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HappyHourBrowser.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		98A0FE7E2CB30E1700A01E7E /* HappyHourBrowserTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HappyHourBrowserTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		98A0FE882CB30E1700A01E7E /* HappyHourBrowserUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HappyHourBrowserUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		98A0FEE32CB3119300A01E7E /* Exceptions for "HappyHourBrowser" folder in "HappyHourBrowser" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = 98A0FE682CB30E1500A01E7E /* HappyHourBrowser */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		98A0FE6B2CB30E1500A01E7E /* HappyHourBrowser */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				98A0FEE32CB3119300A01E7E /* Exceptions for "HappyHourBrowser" folder in "HappyHourBrowser" target */,
+			);
+			path = HappyHourBrowser;
+			sourceTree = "<group>";
+		};
+		98A0FE812CB30E1700A01E7E /* HappyHourBrowserTests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = HappyHourBrowserTests;
+			sourceTree = "<group>";
+		};
+		98A0FE8B2CB30E1700A01E7E /* HappyHourBrowserUITests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = HappyHourBrowserUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXFileSystemSynchronizedRootGroup section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		98A0FE662CB30E1500A01E7E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				98A0FF442CB3DF8600A01E7E /* SwiftfulLoadingIndicators in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		98A0FE7B2CB30E1700A01E7E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		98A0FE852CB30E1700A01E7E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		98A0FE602CB30E1500A01E7E = {
+			isa = PBXGroup;
+			children = (
+				98A0FE6B2CB30E1500A01E7E /* HappyHourBrowser */,
+				98A0FE812CB30E1700A01E7E /* HappyHourBrowserTests */,
+				98A0FE8B2CB30E1700A01E7E /* HappyHourBrowserUITests */,
+				98A0FE6A2CB30E1500A01E7E /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		98A0FE6A2CB30E1500A01E7E /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				98A0FE692CB30E1500A01E7E /* HappyHourBrowser.app */,
+				98A0FE7E2CB30E1700A01E7E /* HappyHourBrowserTests.xctest */,
+				98A0FE882CB30E1700A01E7E /* HappyHourBrowserUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		98A0FE682CB30E1500A01E7E /* HappyHourBrowser */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 98A0FE922CB30E1700A01E7E /* Build configuration list for PBXNativeTarget "HappyHourBrowser" */;
+			buildPhases = (
+				98A0FE652CB30E1500A01E7E /* Sources */,
+				98A0FE662CB30E1500A01E7E /* Frameworks */,
+				98A0FE672CB30E1500A01E7E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				98A0FE6B2CB30E1500A01E7E /* HappyHourBrowser */,
+			);
+			name = HappyHourBrowser;
+			packageProductDependencies = (
+				98A0FF432CB3DF8600A01E7E /* SwiftfulLoadingIndicators */,
+			);
+			productName = HappyHourBrowser;
+			productReference = 98A0FE692CB30E1500A01E7E /* HappyHourBrowser.app */;
+			productType = "com.apple.product-type.application";
+		};
+		98A0FE7D2CB30E1700A01E7E /* HappyHourBrowserTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 98A0FE952CB30E1700A01E7E /* Build configuration list for PBXNativeTarget "HappyHourBrowserTests" */;
+			buildPhases = (
+				98A0FE7A2CB30E1700A01E7E /* Sources */,
+				98A0FE7B2CB30E1700A01E7E /* Frameworks */,
+				98A0FE7C2CB30E1700A01E7E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				98A0FE802CB30E1700A01E7E /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				98A0FE812CB30E1700A01E7E /* HappyHourBrowserTests */,
+			);
+			name = HappyHourBrowserTests;
+			packageProductDependencies = (
+			);
+			productName = HappyHourBrowserTests;
+			productReference = 98A0FE7E2CB30E1700A01E7E /* HappyHourBrowserTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		98A0FE872CB30E1700A01E7E /* HappyHourBrowserUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 98A0FE982CB30E1700A01E7E /* Build configuration list for PBXNativeTarget "HappyHourBrowserUITests" */;
+			buildPhases = (
+				98A0FE842CB30E1700A01E7E /* Sources */,
+				98A0FE852CB30E1700A01E7E /* Frameworks */,
+				98A0FE862CB30E1700A01E7E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				98A0FE8A2CB30E1700A01E7E /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				98A0FE8B2CB30E1700A01E7E /* HappyHourBrowserUITests */,
+			);
+			name = HappyHourBrowserUITests;
+			packageProductDependencies = (
+			);
+			productName = HappyHourBrowserUITests;
+			productReference = 98A0FE882CB30E1700A01E7E /* HappyHourBrowserUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		98A0FE612CB30E1500A01E7E /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1600;
+				LastUpgradeCheck = 1600;
+				TargetAttributes = {
+					98A0FE682CB30E1500A01E7E = {
+						CreatedOnToolsVersion = 16.0;
+					};
+					98A0FE7D2CB30E1700A01E7E = {
+						CreatedOnToolsVersion = 16.0;
+						TestTargetID = 98A0FE682CB30E1500A01E7E;
+					};
+					98A0FE872CB30E1700A01E7E = {
+						CreatedOnToolsVersion = 16.0;
+						TestTargetID = 98A0FE682CB30E1500A01E7E;
+					};
+				};
+			};
+			buildConfigurationList = 98A0FE642CB30E1500A01E7E /* Build configuration list for PBXProject "HappyHourBrowser" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 98A0FE602CB30E1500A01E7E;
+			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				98A0FF422CB3DF8600A01E7E /* XCRemoteSwiftPackageReference "SwiftfulLoadingIndicators" */,
+			);
+			preferredProjectObjectVersion = 77;
+			productRefGroup = 98A0FE6A2CB30E1500A01E7E /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				98A0FE682CB30E1500A01E7E /* HappyHourBrowser */,
+				98A0FE7D2CB30E1700A01E7E /* HappyHourBrowserTests */,
+				98A0FE872CB30E1700A01E7E /* HappyHourBrowserUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		98A0FE672CB30E1500A01E7E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		98A0FE7C2CB30E1700A01E7E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		98A0FE862CB30E1700A01E7E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		98A0FE652CB30E1500A01E7E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		98A0FE7A2CB30E1700A01E7E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		98A0FE842CB30E1700A01E7E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		98A0FE802CB30E1700A01E7E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 98A0FE682CB30E1500A01E7E /* HappyHourBrowser */;
+			targetProxy = 98A0FE7F2CB30E1700A01E7E /* PBXContainerItemProxy */;
+		};
+		98A0FE8A2CB30E1700A01E7E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 98A0FE682CB30E1500A01E7E /* HappyHourBrowser */;
+			targetProxy = 98A0FE892CB30E1700A01E7E /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		98A0FE902CB30E1700A01E7E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		98A0FE912CB30E1700A01E7E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		98A0FE932CB30E1700A01E7E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"HappyHourBrowser/Preview Content\"";
+				DEVELOPMENT_TEAM = KB835FKYB4;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = HappyHourBrowser/Info.plist;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.csaba.turdesan.HappyHourBrowser;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		98A0FE942CB30E1700A01E7E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"HappyHourBrowser/Preview Content\"";
+				DEVELOPMENT_TEAM = KB835FKYB4;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = HappyHourBrowser/Info.plist;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.csaba.turdesan.HappyHourBrowser;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		98A0FE962CB30E1700A01E7E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = KB835FKYB4;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.csaba.turdesan.HappyHourBrowserTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/HappyHourBrowser.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/HappyHourBrowser";
+			};
+			name = Debug;
+		};
+		98A0FE972CB30E1700A01E7E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = KB835FKYB4;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.csaba.turdesan.HappyHourBrowserTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/HappyHourBrowser.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/HappyHourBrowser";
+			};
+			name = Release;
+		};
+		98A0FE992CB30E1700A01E7E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = KB835FKYB4;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.csaba.turdesan.HappyHourBrowserUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = HappyHourBrowser;
+			};
+			name = Debug;
+		};
+		98A0FE9A2CB30E1700A01E7E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = KB835FKYB4;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.csaba.turdesan.HappyHourBrowserUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = HappyHourBrowser;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		98A0FE642CB30E1500A01E7E /* Build configuration list for PBXProject "HappyHourBrowser" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				98A0FE902CB30E1700A01E7E /* Debug */,
+				98A0FE912CB30E1700A01E7E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		98A0FE922CB30E1700A01E7E /* Build configuration list for PBXNativeTarget "HappyHourBrowser" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				98A0FE932CB30E1700A01E7E /* Debug */,
+				98A0FE942CB30E1700A01E7E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		98A0FE952CB30E1700A01E7E /* Build configuration list for PBXNativeTarget "HappyHourBrowserTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				98A0FE962CB30E1700A01E7E /* Debug */,
+				98A0FE972CB30E1700A01E7E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		98A0FE982CB30E1700A01E7E /* Build configuration list for PBXNativeTarget "HappyHourBrowserUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				98A0FE992CB30E1700A01E7E /* Debug */,
+				98A0FE9A2CB30E1700A01E7E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		98A0FF422CB3DF8600A01E7E /* XCRemoteSwiftPackageReference "SwiftfulLoadingIndicators" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SwiftfulThinking/SwiftfulLoadingIndicators";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.0.4;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		98A0FF432CB3DF8600A01E7E /* SwiftfulLoadingIndicators */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 98A0FF422CB3DF8600A01E7E /* XCRemoteSwiftPackageReference "SwiftfulLoadingIndicators" */;
+			productName = SwiftfulLoadingIndicators;
+		};
+/* End XCSwiftPackageProductDependency section */
+	};
+	rootObject = 98A0FE612CB30E1500A01E7E /* Project object */;
+}

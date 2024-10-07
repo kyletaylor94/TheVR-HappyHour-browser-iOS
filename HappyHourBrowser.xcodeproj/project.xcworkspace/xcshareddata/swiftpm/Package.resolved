@@ -1,0 +1,15 @@
+{
+  "originHash" : "5975fc51da15551feb4595698f52a1c3b8d3fa0905531df2aace70ae6c7463a3",
+  "pins" : [
+    {
+      "identity" : "swiftfulloadingindicators",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/SwiftfulThinking/SwiftfulLoadingIndicators",
+      "state" : {
+        "revision" : "85858c0246dcd781228301f9928519f75ce89758",
+        "version" : "0.0.4"
+      }
+    }
+  ],
+  "version" : 3
+}
