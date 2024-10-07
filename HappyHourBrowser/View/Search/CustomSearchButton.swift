@@ -15,7 +15,7 @@ struct CustomSearchButton: View {
                 isSearchingActive = true
             }
         }, label: {
-            RoundedRectangle(cornerRadius: 10)
+            RoundedRectangle(cornerRadius: Constants.shared.cornerRadiusTen)
                 .foregroundStyle(.searchButtonBackGround)
                 .frame(width: 60,height: 60)
                 .overlay{

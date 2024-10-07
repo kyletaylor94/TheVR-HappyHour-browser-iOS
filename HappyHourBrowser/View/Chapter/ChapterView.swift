@@ -12,14 +12,10 @@ struct ChapterView: View {
     @State private var chaptersTapped: Bool = false
     
     let episode: HappyHourVideoModel
-    
-    //private let spotifyUrl: String = "https://open.spotify.com/show/2TViVtEtC5NjM1xEwkXK0c"
-   // private let youtubeBaseUrl: String = "https://youtube.com/watch?v="
-    
+        
     private let youtubeIndexWidth: CGFloat = UIScreen.main.bounds.width - 40
     private let youtubeIndexHeight: CGFloat = 270
     
-    //private let chapterInfoWidth: CGFloat = UIScreen.main.bounds.width - 32
     private let chapterInfoHeight: CGFloat = 90
     
     
@@ -44,6 +40,7 @@ struct ChapterView: View {
                     
             //Youtube Button
                     CustomMediaButton(url: Constants.shared.youtubeBaseUrl + episode.videoId, iconName: Constants.shared.youtubeIcon, titleName: "Start on Youtube", width: Constants.shared.rectangleWidth)
+                        
                     
             // Spotify Button
                     CustomMediaButton(url: Constants.shared.spotifyUrl, iconName: Constants.shared.spotifyIcon, titleName: "Find on Spotify", width: Constants.shared.rectangleWidth)

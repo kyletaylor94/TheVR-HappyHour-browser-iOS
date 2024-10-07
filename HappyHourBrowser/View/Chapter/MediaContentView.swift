@@ -23,20 +23,20 @@ struct MediaContentView: View {
                             .resizable()
                             .aspectRatio(contentMode: .fill)
                             .frame(width: width ,height: height)
-                            .clipShape(RoundedRectangle(cornerRadius: 12))
+                            .clipShape(RoundedRectangle(cornerRadius: Constants.shared.cornerRadiusTwelve))
                         
                     } placeholder: {
                         ProgressView()
                     }
                 }
                 .overlay {
-                    RoundedRectangle(cornerRadius: 12)
+                    RoundedRectangle(cornerRadius: Constants.shared.cornerRadiusTwelve)
                         .stroke(Color(.searchButtonBackGround),style: StrokeStyle())
                         .frame(width: width, height: height)
                 }
             }
         } else {
-            RoundedRectangle(cornerRadius: 12)
+            RoundedRectangle(cornerRadius: Constants.shared.cornerRadiusTwelve)
                 .fill(.cellBG)
                 .stroke(Color(.searchButtonBackGround), style: StrokeStyle())
                 .frame(width: width, height: height)
@@ -68,7 +68,7 @@ struct MediaContentView: View {
                             }
                         }
                     }
-                    .foregroundStyle(.black.opacity(0.8))
+                    .foregroundStyle(Constants.shared.chapterBlackColor)
                     .padding(.horizontal, 8)
                 }
         }

@@ -56,7 +56,7 @@ struct SearchView: View {
         }
         .frame(width: UIScreen.main.bounds.width - 75, height: 480)
         .background(
-            RoundedRectangle(cornerRadius: 12)
+            RoundedRectangle(cornerRadius: Constants.shared.cornerRadiusTwelve)
                 .foregroundStyle(.backGround)
         )
     }

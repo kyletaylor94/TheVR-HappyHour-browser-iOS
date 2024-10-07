@@ -32,7 +32,7 @@ struct SearchOptionButtonLabel: View {
         .padding(.horizontal)
         .frame(width: 250,height: 70)
         .background(
-            RoundedRectangle(cornerRadius: 8)
+            RoundedRectangle(cornerRadius: Constants.shared.cornerRadiusEight)
                 .foregroundStyle(selectedSearchOption == option ? .chapterCell : .searchSelectedOptionBG)
         )
     }

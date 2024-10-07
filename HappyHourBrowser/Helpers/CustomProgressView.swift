@@ -11,7 +11,7 @@ import SwiftfulLoadingIndicators
 struct CustomProgressView: View {
     var body: some View {
         VStack{
-            RoundedRectangle(cornerRadius: 12)
+            RoundedRectangle(cornerRadius: Constants.shared.cornerRadiusTwelve)
                 .frame(width: 120, height: 120)
                 .foregroundStyle(.cellBG)
                 .overlay {

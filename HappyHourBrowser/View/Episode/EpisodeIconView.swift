@@ -19,7 +19,7 @@ struct EpisodeIconView: View {
         .foregroundStyle(.tabBar)
         .frame(width: 50, height: 60)
         .background(
-            RoundedRectangle(cornerRadius: 8)
+            RoundedRectangle(cornerRadius: Constants.shared.cornerRadiusEight)
                 .fill(.white.opacity(0.4))
                 .stroke(.searchButtonBackGround)
         )

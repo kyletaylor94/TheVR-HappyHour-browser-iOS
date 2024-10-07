@@ -30,5 +30,14 @@ struct Constants {
     
     let rectangleWidth: CGFloat = UIScreen.main.bounds.width - 32
     
+    let cornerRadiusTwenty: CGFloat = 20
+    let cornerRadiusTwelve : CGFloat = 12
+    let cornerRadiusTen : CGFloat = 10
+    let cornerRadiusEight : CGFloat = 8
+    let cornerRadiusFour : CGFloat = 4
+
+
+    
+    let chapterBlackColor = Color(.black).opacity(0.8)
     
 }

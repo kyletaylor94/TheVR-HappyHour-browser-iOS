@@ -11,14 +11,14 @@ struct ChapterCell: View {
     let chapter: String
     let timeStampString: String
     let videoId: String
-        
+    
     var body: some View {
-        if URL(string: FormatHelper.youtubeChapterUrl(for: timeStampString, for: videoId)) != nil {
+        Link(destination: (URL(string: FormatHelper.youtubeChapterUrl(for: timeStampString, for: videoId)) ?? URL(string: "https://google.com/"))!) {
             HStack(spacing: 30) {
                 Text(chapter)
                     .font(.subheadline)
                     .fontWeight(.light)
-                    .foregroundColor(.black.opacity(0.8))
+                    .foregroundColor(Constants.shared.chapterBlackColor)
                     .lineLimit(1)
                 
                 Spacer()
@@ -26,7 +26,7 @@ struct ChapterCell: View {
             .padding(.horizontal, 5)
             .frame(width: UIScreen.main.bounds.width - 50, height: 30)
             .background(
-                RoundedRectangle(cornerRadius: 8)
+                RoundedRectangle(cornerRadius: Constants.shared.cornerRadiusEight)
                     .fill(.chapterCell)
                     .stroke(Color(.searchButtonBackGround))
             )

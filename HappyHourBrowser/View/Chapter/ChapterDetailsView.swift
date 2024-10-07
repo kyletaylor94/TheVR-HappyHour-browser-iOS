@@ -36,7 +36,7 @@ struct ChapterDetailsView: View {
                     .font(.subheadline)
                     .fontWeight(.light)
             }
-            .foregroundStyle(.black.opacity(0.7))
+            .foregroundStyle(Constants.shared.chapterBlackColor)
             .frame(height: 70)
             .onTapGesture {
                 withAnimation {
@@ -49,13 +49,18 @@ struct ChapterDetailsView: View {
                     ChapterCell(chapter: chapter, timeStampString: FormatHelper.extractTimeStamp(from: chapter), videoId: videoId)
                         .transition(.move(edge: .top).combined(with: .opacity))
                         .padding(.bottom, chapter == formattedTimeStamp.last ? 5 : 0)
+                        .onTapGesture {
+                            print(FormatHelper.extractTimeStamp(from: chapter))
+                            print(videoId)
+                            
+                        }
                 }
             }
         }
         .padding(.horizontal, 8)
         .frame(width: Constants.shared.rectangleWidth)
         .background(
-            RoundedRectangle(cornerRadius: 8)
+            RoundedRectangle(cornerRadius: Constants.shared.cornerRadiusEight)
                 .fill(.cellBG)
                 .stroke(Color(.searchButtonBackGround))
         )

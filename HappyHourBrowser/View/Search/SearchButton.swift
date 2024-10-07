@@ -28,7 +28,7 @@ struct SearchButton: View {
         .disabled(textFieldIsEmpty ? true : false)
         .frame(width: 150, height: 50)
         .background(
-            RoundedRectangle(cornerRadius: 8)
+            RoundedRectangle(cornerRadius: Constants.shared.cornerRadiusEight)
                 .foregroundStyle(textFieldIsEmpty ? .searchSelectedOptionBG : .searchButtonBackGround)
         )
     }

@@ -29,11 +29,11 @@ struct CustomMediaButton: View {
                 }
             }
             .fontWeight(.semibold)
-            .foregroundStyle(.black.opacity(0.7))
+            .foregroundStyle(Constants.shared.chapterBlackColor)
             .padding(.horizontal, 3)
             .frame(width: width, height: 30)
             .background(
-                RoundedRectangle(cornerRadius: 8)
+                RoundedRectangle(cornerRadius: Constants.shared.cornerRadiusEight)
                     .fill(.chapterCell)
                     .stroke(.searchButtonBackGround)
             )

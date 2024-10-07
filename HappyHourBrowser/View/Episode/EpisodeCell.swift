@@ -24,7 +24,7 @@ struct EpisodeCell: View {
             .padding(.horizontal, 12)
             .frame(width: Constants.shared.rectangleWidth, height: 82)
             .background(
-                RoundedRectangle(cornerRadius: 20)
+                RoundedRectangle(cornerRadius: Constants.shared.cornerRadiusTwenty)
                     .foregroundStyle(.cellBG)
                     .opacity(0.7)
             )

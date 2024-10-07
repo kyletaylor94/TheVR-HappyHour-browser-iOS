@@ -18,23 +18,20 @@ struct HomeView: View {
                     .opacity(isSeachingActive ? 0.7 : 1)
                 
                     if viewModel.isLoading {
-                        ProgressView()
+                        CustomProgressView()
                     } else {
                         EpisodeView(isSeachingActive: $isSeachingActive, episodes: viewModel.allVideos, viewModel: viewModel)
                             .opacity(isSeachingActive ? 0.3 : 1)
                             .disabled(isSeachingActive)
-                        
                 }
                 
                 SearchView(isSearcinhgActive: $isSeachingActive, viewModel: viewModel)
                     .opacity(isSeachingActive ? 1 : 0)
             }
             .alert(isPresented: $viewModel.hasError, content: {
-                Alert(title: Text("Error!"), message: Text(viewModel.apiErrorType?.errorDescription ?? "Unknown error!"), primaryButton: .default(Text("Retry"), action: {
-                    Task {
-                        await viewModel.loadPage(targetPage: viewModel.currentPage)
-                    }
-                }), secondaryButton: .cancel())
+                createApiAlert(title: "Error!", message: viewModel.apiErrorType?.errorDescription ?? "Unknown error!", primaryButtonString: "Retry") {
+                    Task { await viewModel.loadPage(targetPage: viewModel.currentPage) }
+                }
             })
         }
         .onAppear{
@@ -44,9 +41,19 @@ struct HomeView: View {
             }
         }
     }
+    
+   
 }
 
 #Preview {
     HomeView(viewModel: HappyHourViewModel(context: CoreDataHelper.shared.persistentContainer.viewContext))
         
+}
+
+extension HomeView {
+    private func createApiAlert(title: String, message: String, primaryButtonString: String, task: @escaping () -> Void) -> Alert {
+        return Alert(title: Text(title), message: Text(message), primaryButton: .default(Text(primaryButtonString), action: {
+                 task()
+        }), secondaryButton: .cancel())
+    }
 }

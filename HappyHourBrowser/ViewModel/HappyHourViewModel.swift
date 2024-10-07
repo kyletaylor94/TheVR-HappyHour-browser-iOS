@@ -181,6 +181,7 @@ class HappyHourViewModel: ObservableObject {
         do {
             let results = try managedObjectContext.fetch(fetchRequest)
             let models = results.compactMap { HappyHourVideoModel(entity: $0) }
+            print("First Model is: \(models.first)")
             return models
             
         } catch {

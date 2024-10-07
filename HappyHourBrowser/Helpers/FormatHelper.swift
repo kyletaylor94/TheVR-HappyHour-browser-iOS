@@ -50,10 +50,8 @@ class FormatHelper {
     }
     
     static func extractTimeStamp(from chapter: String) -> String {
-        // Válasszuk el a stringet az első "-" karakter alapján
         let components = chapter.components(separatedBy: " - ")
         if let timeStamp = components.first {
-            // Töröljük az esetleges felesleges whitespace és kocsi visszatérítést
             return timeStamp.trimmingCharacters(in: .whitespacesAndNewlines)
         }
         return "00:00:00"

@@ -10,7 +10,7 @@ import SwiftUI
 struct NoResultsView: View {
     var body: some View {
         VStack{
-            RoundedRectangle(cornerRadius: 12)
+            RoundedRectangle(cornerRadius: Constants.shared.cornerRadiusTwelve)
                 .frame(width: 100, height: 100)
                 .foregroundStyle(.cellBG)
                 .overlay {
