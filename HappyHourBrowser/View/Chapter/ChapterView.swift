@@ -54,6 +54,7 @@ struct ChapterView: View {
                 }
             }
             .padding(.top, 70)
+            .padding(.bottom, 120)
             .navigationBarBackButtonHidden()
             .toolbar {
                 ToolbarItem(placement: .topBarLeading) {

@@ -50,6 +50,7 @@ struct ChapterDetailsView: View {
                 ForEach(formattedTimeStamp, id: \.self) { chapter in
                     ChapterCell(chapter: chapter, timeStampString: FormatHelper.extractTimeStamp(from: chapter), videoId: videoId)
                         .transition(.move(edge: .top).combined(with: .opacity))
+                        .padding(.bottom, chapter == formattedTimeStamp.last ? 5 : 0)
                 }
             }
         }

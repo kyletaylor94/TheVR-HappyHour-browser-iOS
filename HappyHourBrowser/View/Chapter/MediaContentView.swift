@@ -25,7 +25,6 @@ struct MediaContentView: View {
                             .frame(width: width ,height: height)
                             .clipShape(RoundedRectangle(cornerRadius: 12))
                         
-                        
                     } placeholder: {
                         ProgressView()
                     }
