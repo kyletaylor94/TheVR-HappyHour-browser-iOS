@@ -13,27 +13,35 @@ struct MediaContentView: View {
     let height: CGFloat
     
     var episode: HappyHourVideoModel?
-
     
     var body: some View {
-        RoundedRectangle(cornerRadius: 12)
-            .fill(.cellBG)
-            .stroke(Color(.searchButtonBackGround), style: StrokeStyle())
-            .frame(width: width, height: height)
-            .overlay {
-                if isChapturePicture {
-                    if let episode = episode {
-                        AsyncImage(url: URL(string: FormatHelper.youtubeThumbnailUrl(videoId: episode.videoId)), scale: 1.0) { image in
-                            image
-                                .resizable()
-                                .aspectRatio(contentMode: .fit)
-                                .clipShape(RoundedRectangle(cornerRadius: 12))
-                                .frame(width: width ,height: 269.9)
-                        } placeholder: {
-                            ProgressView()
-                        }
+        if isChapturePicture {
+            if let episode = episode {
+                VStack{
+                    AsyncImage(url: URL(string: FormatHelper.youtubeThumbnailUrl(videoId: episode.videoId)), scale: 1.0) { image in
+                        image
+                            .resizable()
+                            .aspectRatio(contentMode: .fill)
+                            .frame(width: width ,height: height)
+                            .clipShape(RoundedRectangle(cornerRadius: 12))
+                        
+                        
+                    } placeholder: {
+                        ProgressView()
                     }
-                } else {
+                }
+                .overlay {
+                    RoundedRectangle(cornerRadius: 12)
+                        .stroke(Color(.searchButtonBackGround),style: StrokeStyle())
+                        .frame(width: width, height: height)
+                }
+            }
+        } else {
+            RoundedRectangle(cornerRadius: 12)
+                .fill(.cellBG)
+                .stroke(Color(.searchButtonBackGround), style: StrokeStyle())
+                .frame(width: width, height: height)
+                .overlay {
                     VStack(alignment: .leading, spacing: 15) {
                         if let episode = episode{
                             Text(FormatHelper.formattedTitle(episode.title))
@@ -67,6 +75,6 @@ struct MediaContentView: View {
                     }
                     .padding(.horizontal, 8)
                 }
-            }
+        }
     }
 }
