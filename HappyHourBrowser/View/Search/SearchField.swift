@@ -14,7 +14,7 @@ struct SearchField: View {
     var body: some View {
         TextField(placeholder, text: $searchByText)
             .padding()
-            .frame(width: 280, height: 50)
+            .frame(width: 230, height: 50)
             .background(
                 RoundedRectangle(cornerRadius: 4)
                     .stroke(Color.chapterCell,style: StrokeStyle())

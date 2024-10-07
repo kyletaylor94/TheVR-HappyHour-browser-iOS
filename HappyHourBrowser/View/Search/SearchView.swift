@@ -149,6 +149,7 @@ struct SearchView: View {
                 .frame(width: 300, height: 150)
                 .background(
                     RoundedRectangle(cornerRadius: 8)
+                        .frame(width: 250)
                         .foregroundStyle(.white.opacity(0.8))
                 )
             }
