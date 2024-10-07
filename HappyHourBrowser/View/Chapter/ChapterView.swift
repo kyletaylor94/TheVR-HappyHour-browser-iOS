@@ -13,15 +13,15 @@ struct ChapterView: View {
     
     let episode: HappyHourVideoModel
     
-    private let spotifyUrl: String = "https://open.spotify.com/show/2TViVtEtC5NjM1xEwkXK0c"
-    private let youtubeBaseUrl: String = "https://youtube.com/watch?v="
+    //private let spotifyUrl: String = "https://open.spotify.com/show/2TViVtEtC5NjM1xEwkXK0c"
+   // private let youtubeBaseUrl: String = "https://youtube.com/watch?v="
     
     private let youtubeIndexWidth: CGFloat = UIScreen.main.bounds.width - 40
     private let youtubeIndexHeight: CGFloat = 270
     
-    private let chapterInfoWidth: CGFloat = UIScreen.main.bounds.width - 32
+    //private let chapterInfoWidth: CGFloat = UIScreen.main.bounds.width - 32
     private let chapterInfoHeight: CGFloat = 90
-
+    
     
     var formattedTimeStamp: [String] {
         return episode.timeStampText.components(separatedBy: "\n")
@@ -39,14 +39,14 @@ struct ChapterView: View {
                     MediaContentView(isChapturePicture: true, width: youtubeIndexWidth, height: youtubeIndexHeight, episode: episode)
 
             //Chapter Info
-                    MediaContentView(isChapturePicture: false, width: chapterInfoWidth, height: chapterInfoHeight, episode: episode)
+                    MediaContentView(isChapturePicture: false, width: Constants.shared.rectangleWidth, height: chapterInfoHeight, episode: episode)
 
                     
             //Youtube Button
-                    CustomMediaButton(url: youtubeBaseUrl + episode.videoId, iconName: "play.circle.fill", titleName: "Start on Youtube")
+                    CustomMediaButton(url: Constants.shared.youtubeBaseUrl + episode.videoId, iconName: Constants.shared.youtubeIcon, titleName: "Start on Youtube", width: Constants.shared.rectangleWidth)
                     
             // Spotify Button
-                    CustomMediaButton(url: spotifyUrl, iconName: "headphones", titleName: "Find on Spotify")
+                    CustomMediaButton(url: Constants.shared.spotifyUrl, iconName: Constants.shared.spotifyIcon, titleName: "Find on Spotify", width: Constants.shared.rectangleWidth)
                     
                     
             // Chapters Details
@@ -61,7 +61,7 @@ struct ChapterView: View {
                     Button {
                         dismiss()
                     } label: {
-                        Image(systemName: "arrow.left.circle.fill")
+                        Image(systemName: Constants.shared.backButtonIcon)
                             .font(.title2)
                             .foregroundStyle(.white)
                     }

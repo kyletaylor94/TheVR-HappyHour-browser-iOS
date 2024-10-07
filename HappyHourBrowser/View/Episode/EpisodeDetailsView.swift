@@ -13,21 +13,17 @@ struct EpisodeDetailsView: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 10) {
             Text(FormatHelper.formattedTitle(episode.title))
-                .font(.subheadline)
                 .multilineTextAlignment(.leading)
-                .foregroundStyle(.black.opacity(0.8))
                 .fontWeight(.semibold)
             
             HStack(alignment: .top) {
-                Image(systemName: "calendar")
-                    .font(.subheadline)
-                    .foregroundStyle(.black.opacity(0.8))
+                Image(systemName: Constants.shared.calendarIcon)
                 
                 Text(FormatHelper.formatDate(episode.publishedDate))
-                    .font(.subheadline)
-                    .foregroundStyle(.black.opacity(0.8))
                     .fontWeight(.light)
             }
         }
+        .font(.subheadline)
+        .foregroundStyle(.black.opacity(0.8))
     }
 }

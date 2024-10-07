@@ -16,17 +16,15 @@ struct ResultsTopView: View {
             Button {
                 dismiss()
             } label: {
-                Image(systemName: "arrow.left")
-                    .foregroundStyle(.white)
-                    .font(.title3)
+                Image(systemName: Constants.shared.backButtonIcon)
             }
             
             Text("Result for: \(searchedText)")
-                .font(.title3)
-                .foregroundStyle(.white)
-            
+              
             Spacer()
         }
+        .font(.title3)
+        .foregroundStyle(.white)
         .padding(.horizontal)
         .frame(width: UIScreen.main.bounds.width, height: 50)
         .background(

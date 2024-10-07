@@ -16,20 +16,17 @@ struct ChapterDetailsView: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 15) {
             HStack {
-                Image(systemName: "bookmark.fill")
+                Image(systemName: Constants.shared.bookmarkIcon)
                     .font(.title2)
                     .fontWeight(.semibold)
-                    .foregroundColor(.black.opacity(0.7))
                 
                 Text("Chapters")
                     .font(.title3)
                     .fontWeight(.semibold)
-                    .foregroundColor(.black.opacity(0.7))
                 
-                Image(systemName: chaptersTapped ? "chevron.up" : "chevron.down")
+                Image(systemName: chaptersTapped ? Constants.shared.chevronUpIcon : Constants.shared.chevronDownIcon)
                     .font(.caption)
                     .fontWeight(.heavy)
-                    .foregroundColor(.black.opacity(0.7))
                     .padding(.leading, 50)
                     .padding(.top, 30)
                 
@@ -39,6 +36,7 @@ struct ChapterDetailsView: View {
                     .font(.subheadline)
                     .fontWeight(.light)
             }
+            .foregroundStyle(.black.opacity(0.7))
             .frame(height: 70)
             .onTapGesture {
                 withAnimation {
@@ -55,7 +53,7 @@ struct ChapterDetailsView: View {
             }
         }
         .padding(.horizontal, 8)
-        .frame(width: UIScreen.main.bounds.width - 32)
+        .frame(width: Constants.shared.rectangleWidth)
         .background(
             RoundedRectangle(cornerRadius: 8)
                 .fill(.cellBG)

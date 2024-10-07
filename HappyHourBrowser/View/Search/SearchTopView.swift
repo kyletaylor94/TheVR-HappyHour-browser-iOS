@@ -14,7 +14,7 @@ struct SearchTopView: View {
         HStack(spacing: 10){
             Spacer()
             
-            Image(systemName: "magnifyingglass")
+            Image(systemName: Constants.shared.searchIcon)
                 .font(.title3)
                 .foregroundStyle(.searchSelectedOptionBG)
             
@@ -30,7 +30,7 @@ struct SearchTopView: View {
                     isSearcinhgActive = false
                 }
             } label: {
-                Image(systemName: "xmark")
+                Image(systemName: Constants.shared.xMarkIcon)
                     .foregroundStyle(.white)
                     .font(.title2)
             }

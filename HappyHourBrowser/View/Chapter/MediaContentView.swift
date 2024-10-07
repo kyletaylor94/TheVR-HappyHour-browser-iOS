@@ -47,7 +47,6 @@ struct MediaContentView: View {
                                 .lineLimit(3)
                                 .font(.title2)
                                 .fontWeight(.semibold)
-                                .foregroundColor(.black.opacity(0.8))
                         }
                         
                         HStack {
@@ -55,23 +54,21 @@ struct MediaContentView: View {
                                 Text("#\(String(episode.part))")
                                     .font(.title2)
                                     .fontWeight(.light)
-                                    .foregroundStyle(.black.opacity(0.8))
                             }
                             
                             Spacer()
                             
-                            Image(systemName: "calendar")
+                            Image(systemName: Constants.shared.calendarIcon)
                                 .font(.subheadline)
-                                .foregroundStyle(.black.opacity(0.8))
                             
                             if let episode = episode {
                                 Text(FormatHelper.formatDate(episode.publishedDate))
                                     .font(.subheadline)
                                     .fontWeight(.light)
-                                    .foregroundStyle(.black.opacity(0.8))
                             }
                         }
                     }
+                    .foregroundStyle(.black.opacity(0.8))
                     .padding(.horizontal, 8)
                 }
         }

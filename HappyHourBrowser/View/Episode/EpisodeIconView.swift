@@ -12,12 +12,11 @@ struct EpisodeIconView: View {
     
     var body: some View {
         VStack(alignment: .center, spacing: 5) {
-            Image(systemName: "cup.and.saucer")
-                .foregroundStyle(.tabBar)
+            Image(systemName: Constants.shared.coffeIcon)
             
             Text(String(part))
-                .foregroundStyle(.tabBar)
         }
+        .foregroundStyle(.tabBar)
         .frame(width: 50, height: 60)
         .background(
             RoundedRectangle(cornerRadius: 8)

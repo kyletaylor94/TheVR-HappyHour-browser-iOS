@@ -19,7 +19,7 @@ struct CustomSearchButton: View {
                 .foregroundStyle(.searchButtonBackGround)
                 .frame(width: 60,height: 60)
                 .overlay{
-                    Image(systemName: "magnifyingglass")
+                    Image(systemName: Constants.shared.searchIcon)
                         .foregroundStyle(.white)
                         .font(.title3)
                 }

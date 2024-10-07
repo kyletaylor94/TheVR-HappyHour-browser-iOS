@@ -15,7 +15,7 @@ struct NoResultsView: View {
                 .foregroundStyle(.cellBG)
                 .overlay {
                     VStack{
-                        Image(systemName: "exclamationmark.magnifyingglass")
+                        Image(systemName: Constants.shared.noResultSearchIcon)
                             .font(.title2)
                             .foregroundStyle(.chapterCell)
                         Text("No result!")
