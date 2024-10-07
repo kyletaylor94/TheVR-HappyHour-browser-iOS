@@ -9,6 +9,9 @@
  **This is not an official app. TheVR is not affiliated with this project in any way. All content used is the property of TheVR.**
 
 ---
+- **Minimum iOS Version**: 17.6
+
+This project requires iOS 17.6 or later to function properly. Please ensure that your device is running the appropriate operating system before installing the app.
 
 ## 🚀 Features
 
