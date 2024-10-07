@@ -13,7 +13,7 @@ struct ChapterCell: View {
     let videoId: String
         
     var body: some View {
-        if let link = URL(string: FormatHelper.youtubeChapterUrl(for: timeStampString, for: videoId)) {
+        if URL(string: FormatHelper.youtubeChapterUrl(for: timeStampString, for: videoId)) != nil {
             HStack(spacing: 30) {
                 Text(chapter)
                     .font(.subheadline)

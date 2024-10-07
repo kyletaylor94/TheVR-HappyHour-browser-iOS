@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import CoreData
 
 struct HomeView: View {
     @ObservedObject var viewModel: HappyHourViewModel

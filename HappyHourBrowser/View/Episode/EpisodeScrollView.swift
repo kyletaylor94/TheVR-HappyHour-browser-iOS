@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import CoreData
 
 struct EpisodeScrollView: View {
     @ObservedObject var viewModel: HappyHourViewModel
