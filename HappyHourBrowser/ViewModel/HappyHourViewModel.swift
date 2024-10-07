@@ -95,7 +95,7 @@ class HappyHourViewModel: ObservableObject {
             
             switch option {
                 case .byPart:
-                    if Int(query)! > totalSearchPages - 8 {
+                if let partNumber = Int(query), partNumber > totalSearchPages - 8 {
                         return searchResults
                     }
                     searchResults = allVideos.filter { String($0.part) == query }

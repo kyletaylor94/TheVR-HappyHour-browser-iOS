@@ -22,14 +22,16 @@ struct MediaContentView: View {
             .frame(width: width, height: height)
             .overlay {
                 if isChapturePicture {
-                    AsyncImage(url: URL(string: FormatHelper.youtubeThumbnailUrl(videoId: episode!.videoId)), scale: 1.0) { image in
-                        image
-                            .resizable()
-                            .aspectRatio(contentMode: .fit)
-                            .clipShape(RoundedRectangle(cornerRadius: 12))
-                            .frame(width: width ,height: 269.9)
-                    } placeholder: {
-                        ProgressView()
+                    if let episode = episode {
+                        AsyncImage(url: URL(string: FormatHelper.youtubeThumbnailUrl(videoId: episode.videoId)), scale: 1.0) { image in
+                            image
+                                .resizable()
+                                .aspectRatio(contentMode: .fit)
+                                .clipShape(RoundedRectangle(cornerRadius: 12))
+                                .frame(width: width ,height: 269.9)
+                        } placeholder: {
+                            ProgressView()
+                        }
                     }
                 } else {
                     VStack(alignment: .leading, spacing: 15) {
