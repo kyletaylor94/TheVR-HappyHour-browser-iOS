@@ -81,7 +81,12 @@ struct SearchView: View {
                         SearchField(searchByText: $searchByPart, placeholder: "Part")
                             .onChange(of: searchByPart) { _, newValue in
                                 textFieldIsEmpty = newValue.isEmpty
-                                searchByPart = newValue.filter { $0.isNumber && Int(searchByPart)! > 0 && Int(searchByPart)! < 2000  }
+                                if let partNumber = Int(newValue), partNumber > 0 && partNumber < 2000 {
+                                    searchByPart = String(partNumber)
+                                } else {
+                                    searchByPart = ""
+                                }
+                                
                             }
                             .keyboardType(.numberPad)
                         
@@ -108,7 +113,7 @@ struct SearchView: View {
                                 textFieldIsEmpty = newValue.isEmpty
                             }
                             .keyboardType(.alphabet)
-                            
+                        
                     }
                     
                     Button(action: {
