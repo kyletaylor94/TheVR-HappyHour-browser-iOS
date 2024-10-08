@@ -8,7 +8,6 @@
 import Foundation
 
 class ApiService {
-    
     static let shared = ApiService()
     
     private let baseUrl = "https://thevr.hu/thevrapps/HappyHour/ajax.hhvideos.php"
@@ -20,7 +19,6 @@ class ApiService {
         request.httpMethod = "POST"
         request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
         
-        // FormData parameters
         let parameters = "srcTag=&page=\(targetPage)"
         request.httpBody = parameters.data(using: .utf8)
         
