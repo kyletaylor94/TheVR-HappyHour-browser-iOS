@@ -17,13 +17,9 @@ struct HomeView: View {
                 BackgroundPicture()
                     .opacity(isSeachingActive ? 0.7 : 1)
                 
-                    if viewModel.isLoading {
-                        CustomProgressView()
-                    } else {
                         EpisodeView(isSeachingActive: $isSeachingActive, episodes: viewModel.allVideos, viewModel: viewModel)
                             .opacity(isSeachingActive ? 0.3 : 1)
-                            .disabled(isSeachingActive)
-                }
+                            .disabled(isSeachingActive || viewModel.isLoading)
                 
                 SearchView(isSearcinhgActive: $isSeachingActive, viewModel: viewModel)
                     .opacity(isSeachingActive ? 1 : 0)

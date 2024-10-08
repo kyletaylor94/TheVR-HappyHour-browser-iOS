@@ -6,12 +6,16 @@
 //
 
 import SwiftUI
+import Shimmer
 
 struct ChapterDetailsView: View {
     @Binding var chaptersTapped: Bool
+    @Binding var isLoading: Bool
+    
     let count: Int
     let formattedTimeStamp: [String]
     let videoId: String
+
     
     var body: some View {
         VStack(alignment: .leading, spacing: 15) {
@@ -36,6 +40,8 @@ struct ChapterDetailsView: View {
                     .font(.subheadline)
                     .fontWeight(.light)
             }
+            .redacted(reason: isLoading ?  .placeholder : .invalidated)
+            .shimmering(active: isLoading ? true : false)
             .foregroundStyle(Constants.shared.chapterBlackColor)
             .frame(height: 70)
             .onTapGesture {
@@ -46,14 +52,10 @@ struct ChapterDetailsView: View {
             
             if chaptersTapped {
                 ForEach(formattedTimeStamp, id: \.self) { chapter in
-                    ChapterCell(chapter: chapter, timeStampString: FormatHelper.extractTimeStamp(from: chapter), videoId: videoId)
+                    ChapterCell(chapter: chapter, timeStampString: FormatHelper.extractTimeStamp(from: chapter), videoId: videoId, isLoading: $isLoading)
                         .transition(.move(edge: .top).combined(with: .opacity))
                         .padding(.bottom, chapter == formattedTimeStamp.last ? 5 : 0)
-                        .onTapGesture {
-                            print(FormatHelper.extractTimeStamp(from: chapter))
-                            print(videoId)
-                            
-                        }
+                        
                 }
             }
         }

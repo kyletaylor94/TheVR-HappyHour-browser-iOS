@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Shimmer
 
 struct MediaContentView: View {
     let isChapturePicture: Bool
@@ -13,6 +14,7 @@ struct MediaContentView: View {
     let height: CGFloat
     
     var episode: HappyHourVideoModel?
+    @Binding var isLoading: Bool
     
     var body: some View {
         if isChapturePicture {
@@ -29,12 +31,15 @@ struct MediaContentView: View {
                         ProgressView()
                     }
                 }
+                .redacted(reason: isLoading ?  .placeholder : .invalidated)
+                .shimmering(active: isLoading ? true : false)
                 .overlay {
                     RoundedRectangle(cornerRadius: Constants.shared.cornerRadiusTwelve)
                         .stroke(Color(.searchButtonBackGround),style: StrokeStyle())
                         .frame(width: width, height: height)
                 }
             }
+            
         } else {
             RoundedRectangle(cornerRadius: Constants.shared.cornerRadiusTwelve)
                 .fill(.cellBG)
@@ -47,6 +52,7 @@ struct MediaContentView: View {
                                 .lineLimit(3)
                                 .font(.title2)
                                 .fontWeight(.semibold)
+                            
                         }
                         
                         HStack {
@@ -68,6 +74,8 @@ struct MediaContentView: View {
                             }
                         }
                     }
+                    .redacted(reason: isLoading ?  .placeholder : .invalidated)
+                    .shimmering(active: isLoading ? true : false)
                     .foregroundStyle(Constants.shared.chapterBlackColor)
                     .padding(.horizontal, 8)
                 }

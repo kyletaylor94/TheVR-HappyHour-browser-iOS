@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		98A000822CB527A100A01E7E /* Shimmer in Frameworks */ = {isa = PBXBuildFile; productRef = 98A000812CB527A100A01E7E /* Shimmer */; };
 		98A0FF442CB3DF8600A01E7E /* SwiftfulLoadingIndicators in Frameworks */ = {isa = PBXBuildFile; productRef = 98A0FF432CB3DF8600A01E7E /* SwiftfulLoadingIndicators */; };
 /* End PBXBuildFile section */
 
@@ -69,6 +70,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				98A000822CB527A100A01E7E /* Shimmer in Frameworks */,
 				98A0FF442CB3DF8600A01E7E /* SwiftfulLoadingIndicators in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -131,6 +133,7 @@
 			name = HappyHourBrowser;
 			packageProductDependencies = (
 				98A0FF432CB3DF8600A01E7E /* SwiftfulLoadingIndicators */,
+				98A000812CB527A100A01E7E /* Shimmer */,
 			);
 			productName = HappyHourBrowser;
 			productReference = 98A0FE692CB30E1500A01E7E /* HappyHourBrowser.app */;
@@ -216,6 +219,7 @@
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
 				98A0FF422CB3DF8600A01E7E /* XCRemoteSwiftPackageReference "SwiftfulLoadingIndicators" */,
+				98A000802CB527A100A01E7E /* XCRemoteSwiftPackageReference "SwiftUI-Shimmer" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 98A0FE6A2CB30E1500A01E7E /* Products */;
@@ -592,6 +596,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		98A000802CB527A100A01E7E /* XCRemoteSwiftPackageReference "SwiftUI-Shimmer" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/markiv/SwiftUI-Shimmer";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.5.1;
+			};
+		};
 		98A0FF422CB3DF8600A01E7E /* XCRemoteSwiftPackageReference "SwiftfulLoadingIndicators" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SwiftfulThinking/SwiftfulLoadingIndicators";
@@ -603,6 +615,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		98A000812CB527A100A01E7E /* Shimmer */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 98A000802CB527A100A01E7E /* XCRemoteSwiftPackageReference "SwiftUI-Shimmer" */;
+			productName = Shimmer;
+		};
 		98A0FF432CB3DF8600A01E7E /* SwiftfulLoadingIndicators */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 98A0FF422CB3DF8600A01E7E /* XCRemoteSwiftPackageReference "SwiftfulLoadingIndicators" */;

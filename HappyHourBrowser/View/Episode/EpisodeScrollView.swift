@@ -18,9 +18,9 @@ struct EpisodeScrollView: View {
             LazyVStack{
                 ForEach(episodes, id: \.title) { episode in
                     NavigationLink {
-                        ChapterView(episode: episode)
+                        ChapterView(episode: episode, isLoading: $viewModel.isLoading)
                     } label: {
-                        EpisodeCell(episode: episode)
+                        EpisodeCell(episode: episode, isLoading: $viewModel.isLoading)
                     }
                     .onAppear {
                         if episode == episodes.last {

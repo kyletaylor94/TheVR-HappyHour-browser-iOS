@@ -6,12 +6,15 @@
 //
 
 import SwiftUI
+import Shimmer
 
 struct CustomMediaButton: View {
     let url: String
     let iconName: String
     let titleName: String
     let width: CGFloat
+    
+    @Binding var isLoading: Bool
         
     var body: some View {
         if let validUrl = URL(string: url) {
@@ -28,6 +31,8 @@ struct CustomMediaButton: View {
                     Spacer()
                 }
             }
+            .redacted(reason: isLoading ?  .placeholder : .invalidated)
+            .shimmering(active: isLoading ? true : false)
             .fontWeight(.semibold)
             .foregroundStyle(Constants.shared.chapterBlackColor)
             .padding(.horizontal, 3)
@@ -42,5 +47,5 @@ struct CustomMediaButton: View {
 }
 
 #Preview {
-    CustomMediaButton(url: "https//google.com", iconName: "house", titleName: "Play on Youtube",width: UIScreen.main.bounds.width - 32)
+    CustomMediaButton(url: "https//google.com", iconName: "house", titleName: "Play on Youtube",width: UIScreen.main.bounds.width - 32, isLoading: .constant(true))
 }

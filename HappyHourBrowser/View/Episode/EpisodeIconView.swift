@@ -6,15 +6,20 @@
 //
 
 import SwiftUI
+import Shimmer
 
 struct EpisodeIconView: View {
     let part: Int
+    @Binding var isLoading: Bool
     
     var body: some View {
         VStack(alignment: .center, spacing: 5) {
             Image(systemName: Constants.shared.coffeIcon)
-            
+                .shimmering(active: isLoading ? true : false)
+
             Text(String(part))
+                .shimmering(active: isLoading ? true : false)
+
         }
         .foregroundStyle(.tabBar)
         .frame(width: 50, height: 60)

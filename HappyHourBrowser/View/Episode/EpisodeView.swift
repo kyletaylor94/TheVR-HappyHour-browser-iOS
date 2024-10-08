@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Shimmer
 
 struct EpisodeView: View {
     @Binding var isSeachingActive: Bool
@@ -16,10 +17,12 @@ struct EpisodeView: View {
         ZStack(alignment: .bottomTrailing){
             EpisodeScrollView(viewModel: viewModel, episodes: episodes)
                 .padding(.top, 30)
-            
+                .redacted(reason: viewModel.isLoading ?  .placeholder : .invalidated)
+
             CustomSearchButton(isSearchingActive: $isSeachingActive)
                 .padding(.trailing, 40)
                 .padding(.bottom, 50)
+                .disabled(viewModel.isLoading ? true : false)
         }
     }
 }
