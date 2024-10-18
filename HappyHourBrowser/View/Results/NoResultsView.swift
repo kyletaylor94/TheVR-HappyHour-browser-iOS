@@ -10,12 +10,12 @@ import SwiftUI
 struct NoResultsView: View {
     var body: some View {
         VStack{
-            RoundedRectangle(cornerRadius: Constants.shared.cornerRadiusTwelve)
+            RoundedRectangle(cornerRadius: Constants.CornerRadius.twelve)
                 .frame(width: 100, height: 100)
                 .foregroundStyle(.cellBG)
                 .overlay {
                     VStack{
-                        Image(systemName: Constants.shared.noResultSearchIcon)
+                        Image(systemName: Constants.Icons.noResultSearch)
                             .font(.title2)
                             .foregroundStyle(.chapterCell)
                         Text("No result!")

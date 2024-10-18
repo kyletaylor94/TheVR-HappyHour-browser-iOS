@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		98A000822CB527A100A01E7E /* Shimmer in Frameworks */ = {isa = PBXBuildFile; productRef = 98A000812CB527A100A01E7E /* Shimmer */; };
 		98A0FF442CB3DF8600A01E7E /* SwiftfulLoadingIndicators in Frameworks */ = {isa = PBXBuildFile; productRef = 98A0FF432CB3DF8600A01E7E /* SwiftfulLoadingIndicators */; };
+		98F7FEF32CC2C95500DFF6C3 /* CombineMoya in Frameworks */ = {isa = PBXBuildFile; productRef = 98F7FEF22CC2C95500DFF6C3 /* CombineMoya */; };
+		98F7FEF52CC2C95500DFF6C3 /* Moya in Frameworks */ = {isa = PBXBuildFile; productRef = 98F7FEF42CC2C95500DFF6C3 /* Moya */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -72,6 +74,8 @@
 			files = (
 				98A000822CB527A100A01E7E /* Shimmer in Frameworks */,
 				98A0FF442CB3DF8600A01E7E /* SwiftfulLoadingIndicators in Frameworks */,
+				98F7FEF52CC2C95500DFF6C3 /* Moya in Frameworks */,
+				98F7FEF32CC2C95500DFF6C3 /* CombineMoya in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -134,6 +138,8 @@
 			packageProductDependencies = (
 				98A0FF432CB3DF8600A01E7E /* SwiftfulLoadingIndicators */,
 				98A000812CB527A100A01E7E /* Shimmer */,
+				98F7FEF22CC2C95500DFF6C3 /* CombineMoya */,
+				98F7FEF42CC2C95500DFF6C3 /* Moya */,
 			);
 			productName = HappyHourBrowser;
 			productReference = 98A0FE692CB30E1500A01E7E /* HappyHourBrowser.app */;
@@ -220,6 +226,7 @@
 			packageReferences = (
 				98A0FF422CB3DF8600A01E7E /* XCRemoteSwiftPackageReference "SwiftfulLoadingIndicators" */,
 				98A000802CB527A100A01E7E /* XCRemoteSwiftPackageReference "SwiftUI-Shimmer" */,
+				98F7FEF12CC2C95500DFF6C3 /* XCRemoteSwiftPackageReference "Moya" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 98A0FE6A2CB30E1500A01E7E /* Products */;
@@ -612,6 +619,14 @@
 				minimumVersion = 0.0.4;
 			};
 		};
+		98F7FEF12CC2C95500DFF6C3 /* XCRemoteSwiftPackageReference "Moya" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Moya/Moya";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 15.0.3;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -624,6 +639,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 98A0FF422CB3DF8600A01E7E /* XCRemoteSwiftPackageReference "SwiftfulLoadingIndicators" */;
 			productName = SwiftfulLoadingIndicators;
+		};
+		98F7FEF22CC2C95500DFF6C3 /* CombineMoya */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 98F7FEF12CC2C95500DFF6C3 /* XCRemoteSwiftPackageReference "Moya" */;
+			productName = CombineMoya;
+		};
+		98F7FEF42CC2C95500DFF6C3 /* Moya */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 98F7FEF12CC2C95500DFF6C3 /* XCRemoteSwiftPackageReference "Moya" */;
+			productName = Moya;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

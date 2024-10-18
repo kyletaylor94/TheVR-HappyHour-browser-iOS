@@ -16,11 +16,10 @@ struct ChapterDetailsView: View {
     let formattedTimeStamp: [String]
     let videoId: String
 
-    
     var body: some View {
         VStack(alignment: .leading, spacing: 15) {
             HStack {
-                Image(systemName: Constants.shared.bookmarkIcon)
+                Image(systemName: Constants.Icons.bookmark)
                     .font(.title2)
                     .fontWeight(.semibold)
                 
@@ -28,7 +27,7 @@ struct ChapterDetailsView: View {
                     .font(.title3)
                     .fontWeight(.semibold)
                 
-                Image(systemName: chaptersTapped ? Constants.shared.chevronUpIcon : Constants.shared.chevronDownIcon)
+                Image(systemName: chaptersTapped ? Constants.Icons.chevronUp : Constants.Icons.chevronDown)
                     .font(.caption)
                     .fontWeight(.heavy)
                     .padding(.leading, 50)
@@ -42,7 +41,7 @@ struct ChapterDetailsView: View {
             }
             .redacted(reason: isLoading ?  .placeholder : .invalidated)
             .shimmering(active: isLoading ? true : false)
-            .foregroundStyle(Constants.shared.chapterBlackColor)
+            .foregroundStyle(Constants.chapterBlackColor)
             .frame(height: 70)
             .onTapGesture {
                 withAnimation {
@@ -55,14 +54,13 @@ struct ChapterDetailsView: View {
                     ChapterCell(chapter: chapter, timeStampString: FormatHelper.extractTimeStamp(from: chapter), videoId: videoId, isLoading: $isLoading)
                         .transition(.move(edge: .top).combined(with: .opacity))
                         .padding(.bottom, chapter == formattedTimeStamp.last ? 5 : 0)
-                        
                 }
             }
         }
         .padding(.horizontal, 8)
-        .frame(width: Constants.shared.rectangleWidth)
+        .frame(width: Constants.rectangleWidth)
         .background(
-            RoundedRectangle(cornerRadius: Constants.shared.cornerRadiusEight)
+            RoundedRectangle(cornerRadius: Constants.CornerRadius.eight)
                 .fill(.cellBG)
                 .stroke(Color(.searchButtonBackGround))
         )

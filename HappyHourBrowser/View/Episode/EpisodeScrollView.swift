@@ -28,7 +28,7 @@ struct EpisodeScrollView: View {
                         }
                     }
                     .task {
-                        await viewModel.saveHappyHourVideo(video: episode)
+                        Task { await viewModel.saveHappyHourVideo(video: episode) }
                     }
                 }
             }

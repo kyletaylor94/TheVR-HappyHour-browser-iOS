@@ -15,11 +15,11 @@ struct CustomSearchButton: View {
                 isSearchingActive = true
             }
         }, label: {
-            RoundedRectangle(cornerRadius: Constants.shared.cornerRadiusTen)
+            RoundedRectangle(cornerRadius: Constants.CornerRadius.ten)
                 .foregroundStyle(.searchButtonBackGround)
                 .frame(width: 60,height: 60)
                 .overlay{
-                    Image(systemName: Constants.shared.searchIcon)
+                    Image(systemName: Constants.Icons.search)
                         .foregroundStyle(.white)
                         .font(.title3)
                 }

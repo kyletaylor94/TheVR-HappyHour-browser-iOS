@@ -17,13 +17,13 @@ struct EpisodeDetailsView: View {
                 .fontWeight(.semibold)
             
             HStack(alignment: .top) {
-                Image(systemName: Constants.shared.calendarIcon)
+                Image(systemName: Constants.Icons.calendar)
                 
                 Text(FormatHelper.formatDate(episode.publishedDate))
                     .fontWeight(.light)
             }
         }
         .font(.subheadline)
-        .foregroundStyle(Constants.shared.chapterBlackColor)
+        .foregroundStyle(Constants.chapterBlackColor)
     }
 }

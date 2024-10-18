@@ -21,7 +21,7 @@ struct ChapterCell: View {
                 Text(chapter)
                     .font(.subheadline)
                     .fontWeight(.light)
-                    .foregroundColor(Constants.shared.chapterBlackColor)
+                    .foregroundColor(Constants.chapterBlackColor)
                     .lineLimit(1)
                 
                 Spacer()
@@ -31,7 +31,7 @@ struct ChapterCell: View {
             .padding(.horizontal, 5)
             .frame(width: UIScreen.main.bounds.width - 50, height: 30)
             .background(
-                RoundedRectangle(cornerRadius: Constants.shared.cornerRadiusEight)
+                RoundedRectangle(cornerRadius: Constants.CornerRadius.eight)
                     .fill(.chapterCell)
                     .stroke(Color(.searchButtonBackGround))
             )

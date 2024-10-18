@@ -18,7 +18,7 @@ struct SearchButton: View {
             
         }, label: {
             HStack {
-                Image(systemName: Constants.shared.searchIcon)
+                Image(systemName: Constants.Icons.search)
                 
                 Text("Search")
             }
@@ -28,7 +28,7 @@ struct SearchButton: View {
         .disabled(textFieldIsEmpty ? true : false)
         .frame(width: 150, height: 50)
         .background(
-            RoundedRectangle(cornerRadius: Constants.shared.cornerRadiusEight)
+            RoundedRectangle(cornerRadius: Constants.CornerRadius.eight)
                 .foregroundStyle(textFieldIsEmpty ? .searchSelectedOptionBG : .searchButtonBackGround)
         )
     }

@@ -16,7 +16,7 @@ struct SearchField: View {
             .padding()
             .frame(width: 230, height: 50)
             .background(
-                RoundedRectangle(cornerRadius: Constants.shared.cornerRadiusFour)
+                RoundedRectangle(cornerRadius: Constants.CornerRadius.four)
                     .stroke(Color.chapterCell,style: StrokeStyle())
             )
     }

@@ -9,35 +9,35 @@ import Foundation
 import SwiftUI
 
 struct Constants {
-    static let shared = Constants()
     
-    let spotifyUrl: String = "https://open.spotify.com/show/2TViVtEtC5NjM1xEwkXK0c"
-    let youtubeBaseUrl: String = "https://youtube.com/watch?v="
-
+    struct Urls {
+        static let spotifyUrl: String = "https://open.spotify.com/show/2TViVtEtC5NjM1xEwkXK0c"
+        static let youtubeBaseUrl: String = "https://youtube.com/watch?v="
+    }
     
-    let youtubeIcon = "play.circle.fill"
-    let calendarIcon = "calendar"
-    let spotifyIcon = "headphones"
-    let backButtonIcon = "arrow.left.circle.fill"
-    let bookmarkIcon = "bookmark.fill"
-    let coffeIcon = "cup.and.saucer"
-    let noResultSearchIcon = "exclamationmark.magnifyingglass"
-    let searchIcon = "magnifyingglass"
-    let xMarkIcon = "xmark"
+    struct Icons {
+        static let youtube = "play.circle.fill"
+        static let calendar = "calendar"
+        static let spotify = "headphones"
+        static let back = "arrow.left.circle.fill"
+        static let bookmark = "bookmark.fill"
+        static let coffee = "cup.and.saucer"
+        static let noResultSearch = "exclamationmark.magnifyingglass"
+        static let search = "magnifyingglass"
+        static  let xMark = "xmark"
+        static let chevronUp = "chevron.up"
+        static let chevronDown = "chevron.down"
+    }
     
-    let chevronUpIcon = "chevron.up"
-    let chevronDownIcon = "chevron.down"
+    struct CornerRadius {
+        static let twenty: CGFloat = 20
+        static let twelve : CGFloat = 12
+        static  let ten : CGFloat = 10
+        static let eight : CGFloat = 8
+        static  let four : CGFloat = 4
+    }
     
-    let rectangleWidth: CGFloat = UIScreen.main.bounds.width - 32
-    
-    let cornerRadiusTwenty: CGFloat = 20
-    let cornerRadiusTwelve : CGFloat = 12
-    let cornerRadiusTen : CGFloat = 10
-    let cornerRadiusEight : CGFloat = 8
-    let cornerRadiusFour : CGFloat = 4
-
-
-    
-    let chapterBlackColor = Color(.black).opacity(0.8)
+    static let rectangleWidth: CGFloat = UIScreen.main.bounds.width - 32
+    static let chapterBlackColor = Color(.black).opacity(0.8)
     
 }

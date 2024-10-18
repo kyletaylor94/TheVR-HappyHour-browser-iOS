@@ -34,11 +34,11 @@ struct CustomMediaButton: View {
             .redacted(reason: isLoading ?  .placeholder : .invalidated)
             .shimmering(active: isLoading ? true : false)
             .fontWeight(.semibold)
-            .foregroundStyle(Constants.shared.chapterBlackColor)
+            .foregroundStyle(Constants.chapterBlackColor)
             .padding(.horizontal, 3)
             .frame(width: width, height: 30)
             .background(
-                RoundedRectangle(cornerRadius: Constants.shared.cornerRadiusEight)
+                RoundedRectangle(cornerRadius: Constants.CornerRadius.eight)
                     .fill(.chapterCell)
                     .stroke(.searchButtonBackGround)
             )

@@ -33,11 +33,18 @@ struct InputAndSearchButtonView: View {
             case .byPart:
                 SearchField(searchByText: $searchByPart, placeholder: "Part")
                     .onChange(of: searchByPart) { _, newValue in
-                        textFieldIsEmpty = newValue.isEmpty
-                        if let partNumber = Int(newValue), partNumber > 0 && partNumber < 2000 {
+                        guard let firstPart = viewModel.allVideos.first?.part else {
+                            searchByPart = ""
+                            textFieldIsEmpty = true
+                            return
+                        }
+
+                        if let partNumber = Int(newValue), partNumber > 0 && partNumber <= firstPart {
                             searchByPart = String(partNumber)
+                            textFieldIsEmpty = false
                         } else {
                             searchByPart = ""
+                            textFieldIsEmpty = true
                         }
                     }
                     .keyboardType(.numberPad)
@@ -76,7 +83,7 @@ struct InputAndSearchButtonView: View {
         }
         .frame(width: 300, height: 150)
         .background(
-            RoundedRectangle(cornerRadius: Constants.shared.cornerRadiusEight)
+            RoundedRectangle(cornerRadius: Constants.CornerRadius.eight)
                 .frame(width: 250)
                 .foregroundStyle(.white.opacity(0.8))
         )

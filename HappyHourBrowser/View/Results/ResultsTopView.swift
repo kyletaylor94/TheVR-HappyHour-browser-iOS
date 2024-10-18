@@ -16,7 +16,7 @@ struct ResultsTopView: View {
             Button {
                 dismiss()
             } label: {
-                Image(systemName: Constants.shared.backButtonIcon)
+                Image(systemName: Constants.Icons.back)
             }
             
             Text("Result for: \(searchedText)")

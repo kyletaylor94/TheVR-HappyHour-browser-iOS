@@ -34,24 +34,53 @@ struct ChapterView: View {
                 VStack(spacing: 20) {
             
             //Youtube indexpicture
-                    MediaContentView(isChapturePicture: true, width: youtubeIndexWidth, height: youtubeIndexHeight, episode: episode, isLoading: $isLoading)
+                    MediaContentView(
+                        isChapturePicture: true,
+                        width: youtubeIndexWidth,
+                        height: youtubeIndexHeight,
+                        episode: episode,
+                        isLoading: $isLoading
+                    )
                         
 
             //Chapter Info
-                    MediaContentView(isChapturePicture: false, width: Constants.shared.rectangleWidth, height: chapterInfoHeight, episode: episode, isLoading: $isLoading)
+                    MediaContentView(
+                        isChapturePicture: false,
+                        width: Constants.rectangleWidth,
+                        height: chapterInfoHeight,
+                        episode: episode,
+                        isLoading: $isLoading
+                    )
                       
                     
             //Youtube Button
-                    CustomMediaButton(url: Constants.shared.youtubeBaseUrl + episode.videoId, iconName: Constants.shared.youtubeIcon, titleName: "Start on Youtube", width: Constants.shared.rectangleWidth, isLoading: $isLoading)
+                    CustomMediaButton(
+                        url: Constants.Urls.youtubeBaseUrl + episode.videoId,
+                        iconName: Constants.Icons.youtube,
+                        titleName: "Start on Youtube",
+                        width: Constants.rectangleWidth,
+                        isLoading: $isLoading
+                    )
                        
                     
             // Spotify Button
-                    CustomMediaButton(url: Constants.shared.spotifyUrl, iconName: Constants.shared.spotifyIcon, titleName: "Find on Spotify", width: Constants.shared.rectangleWidth, isLoading: $isLoading)
+                    CustomMediaButton(
+                        url: Constants.Urls.spotifyUrl,
+                        iconName: Constants.Icons.spotify,
+                        titleName: "Find on Spotify",
+                        width: Constants.rectangleWidth,
+                        isLoading: $isLoading
+                    )
                       
                     
             // Chapters Details
-                    ChapterDetailsView(chaptersTapped: $chaptersTapped, isLoading: $isLoading, count: formattedTimeStamp.count, formattedTimeStamp: formattedTimeStamp, videoId: episode.videoId)
-                       
+                    ChapterDetailsView(
+                        chaptersTapped: $chaptersTapped,
+                        isLoading: $isLoading,
+                        count: formattedTimeStamp.count,
+                        formattedTimeStamp: formattedTimeStamp,
+                        videoId: episode.videoId
+                    )
                 }
             }
             .padding(.top, 70)
@@ -62,7 +91,7 @@ struct ChapterView: View {
                     Button {
                         dismiss()
                     } label: {
-                        Image(systemName: Constants.shared.backButtonIcon)
+                        Image(systemName: Constants.Icons.back)
                             .font(.title2)
                             .foregroundStyle(.white)
                     }

@@ -8,29 +8,8 @@
 import Foundation
 import CoreData
 import SwiftUI
-
-enum ApiError: Error, LocalizedError {
-    case badUrl
-    case noData
-    case invalidResponse(statusCode: Int)
-    case decodingError
-    case unknown(Error)
-    
-    var errorDescription: String? {
-        switch self {
-        case .badUrl:
-            return "The URL provided was invalid."
-        case .noData:
-            return "No data was received from the server."
-        case .invalidResponse(let statusCode):
-            return "Received an invalid response from the server with statuscode: \(statusCode)"
-        case .decodingError:
-            return "Failed to deccode the response data."
-        case .unknown(let error):
-            return error.localizedDescription
-        }
-    }
-}
+import Moya
+import Combine
 
 @MainActor
 class HappyHourViewModel: ObservableObject {
@@ -44,11 +23,13 @@ class HappyHourViewModel: ObservableObject {
     @Published var allVideos: [HappyHourVideoModel] = []
     
     @Published var searchResults: [HappyHourVideoModel] = []
-
-
+    
+    
     private let service = ApiService.shared
     private let managedObjectContext: NSManagedObjectContext
-
+    
+    private var cancellables = Set<AnyCancellable>()
+    
     init(context: NSManagedObjectContext) {
         self.managedObjectContext = context
     }
@@ -56,20 +37,25 @@ class HappyHourViewModel: ObservableObject {
     func loadPage(targetPage: Int) async {
         defer { isLoading = false }
         
-        do {
-            let page = try await service.loadHappyHourPage(targetPage: targetPage)
-            self.page = page
-            self.allVideos.append(contentsOf: page.hhVideos)
-            apiErrorType = nil
-        } catch let apiError as ApiError {
-            apiErrorType = apiError
-            hasError = true
-        } catch{
-            apiErrorType = .unknown(error)
-            hasError = true
-            print("Unknown Error: \(error.localizedDescription)")
-        }
+        await service.loadHappyHourPage(targetPage: targetPage)
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] completion in
+                switch completion {
+                case .finished:
+                    break
+                case .failure(let error):
+                    self?.apiErrorType = error
+                    self?.hasError = true
+                    print(String(describing: error))
+                }
+            } receiveValue: { [weak self] page in
+                self?.page = page
+                self?.allVideos.append(contentsOf: page.hhVideos)
+                self?.apiErrorType = nil
+            }
+            .store(in: &cancellables)
     }
+    
     
     func loadNextPage() async {
         self.currentPage += 8
@@ -89,23 +75,24 @@ class HappyHourViewModel: ObservableObject {
         var morePagesAvailable = true
         
         while morePagesAvailable {
-
+            
             isLoading = true
             await loadNextPage()
             
             switch option {
-                case .byPart:
+            case .byPart:
                 if let partNumber = Int(query), partNumber > totalSearchPages - 8 {
-                        return searchResults
-                    }
-                    searchResults = allVideos.filter { String($0.part) == query }
-                    
-                case .byDate:
-                    searchResults = allVideos.filter { FormatHelper.formatDate($0.publishedDate) == query }
-                    
-                case .byText:
-                    let result = allVideos.filter({ $0.title.lowercased().contains(query.lowercased()) })
-                    searchResults.append(contentsOf: result)
+                    return searchResults
+                }
+                
+                searchResults = allVideos.filter { String($0.part) == query }
+                
+            case .byDate:
+                searchResults = allVideos.filter { FormatHelper.formatDate($0.publishedDate) == query }
+                
+            case .byText:
+                let result = allVideos.filter({ $0.title.lowercased().contains(query.lowercased()) })
+                searchResults.append(contentsOf: result)
             }
             
             if !searchResults.isEmpty {
@@ -126,22 +113,15 @@ class HappyHourViewModel: ObservableObject {
     }
     
     func syncEpisodesWithCoreData() async {
-        do {
-            let page = try await service.loadHappyHourPage(targetPage: currentPage)
-            for video in page.hhVideos {
-                await saveHappyHourVideo(video: video)
-            }
-        } catch {
-            print("Sync failed with error: \(error.localizedDescription)")
-            apiErrorType = .unknown(error)
-            hasError = true
+        for video in allVideos {
+            await saveHappyHourVideo(video: video)
         }
     }
     
     func saveHappyHourVideo(video: HappyHourVideoModel) async {
         guard !allVideos.isEmpty else { return }
         let fetchRequest = NSFetchRequest<HappyHourEntity>(entityName: "HappyHourEntity")
-          fetchRequest.predicate = NSPredicate(format: "id == %d", video.id)
+        fetchRequest.predicate = NSPredicate(format: "id == %d", video.id)
         
         do {
             let results = try managedObjectContext.fetch(fetchRequest)
@@ -166,17 +146,16 @@ class HappyHourViewModel: ObservableObject {
         }
     }
     
-    
     func fetchFromCoreData(query: String, option: SearchOption) async -> [HappyHourVideoModel]? {
         let fetchRequest = NSFetchRequest<HappyHourEntity>(entityName: "HappyHourEntity")
         
         switch option {
-            case .byPart:
-                fetchRequest.predicate = NSPredicate(format: "part == %@", query)
-            case .byDate:
-                fetchRequest.predicate = NSPredicate(format: "publishedDate == %@", query)
-            case .byText:
-                fetchRequest.predicate = NSPredicate(format: "title CONTAINS[cd] %@", query)
+        case .byPart:
+            fetchRequest.predicate = NSPredicate(format: "part == %@", query)
+        case .byDate:
+            fetchRequest.predicate = NSPredicate(format: "publishedDate == %@", query)
+        case .byText:
+            fetchRequest.predicate = NSPredicate(format: "title CONTAINS[cd] %@", query)
         }
         
         do {

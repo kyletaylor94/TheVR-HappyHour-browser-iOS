@@ -25,7 +25,7 @@ struct MediaContentView: View {
                             .resizable()
                             .aspectRatio(contentMode: .fill)
                             .frame(width: width ,height: height)
-                            .clipShape(RoundedRectangle(cornerRadius: Constants.shared.cornerRadiusTwelve))
+                            .clipShape(RoundedRectangle(cornerRadius: Constants.CornerRadius.twelve))
                         
                     } placeholder: {
                         ProgressView()
@@ -34,14 +34,14 @@ struct MediaContentView: View {
                 .redacted(reason: isLoading ?  .placeholder : .invalidated)
                 .shimmering(active: isLoading ? true : false)
                 .overlay {
-                    RoundedRectangle(cornerRadius: Constants.shared.cornerRadiusTwelve)
+                    RoundedRectangle(cornerRadius: Constants.CornerRadius.twelve)
                         .stroke(Color(.searchButtonBackGround),style: StrokeStyle())
                         .frame(width: width, height: height)
                 }
             }
             
         } else {
-            RoundedRectangle(cornerRadius: Constants.shared.cornerRadiusTwelve)
+            RoundedRectangle(cornerRadius: Constants.CornerRadius.twelve)
                 .fill(.cellBG)
                 .stroke(Color(.searchButtonBackGround), style: StrokeStyle())
                 .frame(width: width, height: height)
@@ -52,7 +52,6 @@ struct MediaContentView: View {
                                 .lineLimit(3)
                                 .font(.title2)
                                 .fontWeight(.semibold)
-                            
                         }
                         
                         HStack {
@@ -64,7 +63,7 @@ struct MediaContentView: View {
                             
                             Spacer()
                             
-                            Image(systemName: Constants.shared.calendarIcon)
+                            Image(systemName: Constants.Icons.calendar)
                                 .font(.subheadline)
                             
                             if let episode = episode {
@@ -76,7 +75,7 @@ struct MediaContentView: View {
                     }
                     .redacted(reason: isLoading ?  .placeholder : .invalidated)
                     .shimmering(active: isLoading ? true : false)
-                    .foregroundStyle(Constants.shared.chapterBlackColor)
+                    .foregroundStyle(Constants.chapterBlackColor)
                     .padding(.horizontal, 8)
                 }
         }

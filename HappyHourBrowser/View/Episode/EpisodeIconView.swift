@@ -14,7 +14,7 @@ struct EpisodeIconView: View {
     
     var body: some View {
         VStack(alignment: .center, spacing: 5) {
-            Image(systemName: Constants.shared.coffeIcon)
+            Image(systemName: Constants.Icons.calendar)
                 .shimmering(active: isLoading ? true : false)
 
             Text(String(part))
@@ -24,7 +24,7 @@ struct EpisodeIconView: View {
         .foregroundStyle(.tabBar)
         .frame(width: 50, height: 60)
         .background(
-            RoundedRectangle(cornerRadius: Constants.shared.cornerRadiusEight)
+            RoundedRectangle(cornerRadius: Constants.CornerRadius.eight)
                 .fill(.white.opacity(0.4))
                 .stroke(.searchButtonBackGround)
         )
