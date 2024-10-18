@@ -16,7 +16,6 @@ struct HomeView: View {
             ZStack{
                 BackgroundPicture()
                     .opacity(isSeachingActive ? 0.7 : 1)
-                
                         EpisodeView(isSeachingActive: $isSeachingActive, episodes: viewModel.allVideos, viewModel: viewModel)
                             .opacity(isSeachingActive ? 0.3 : 1)
                             .disabled(isSeachingActive || viewModel.isLoading)
