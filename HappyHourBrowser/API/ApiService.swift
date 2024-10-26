@@ -18,7 +18,7 @@ class ApiService {
         provider.requestPublisher(.loadPage(targetPage: targetPage))
             .map(HappyHourPageModel.self)
             .mapError { error in
-                ApiError.moyaError(error)
+                ApiError.decodingError(error)
             }
             .eraseToAnyPublisher()
     }
@@ -28,7 +28,7 @@ class ApiService {
             .map(HappyHourPageModel.self)
             .map { $0.hhVideos }
             .mapError { error in
-                ApiError.moyaError(error)
+                ApiError.decodingError(error)
             }
             .eraseToAnyPublisher()
     }

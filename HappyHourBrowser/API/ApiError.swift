@@ -12,10 +12,8 @@ enum ApiError: Error, LocalizedError {
     case badUrl
     case noData
     case invalidResponse(statusCode: Int)
-    case decodingError
     case unknown(Error)
-    case moyaError(MoyaError)
-    
+    case decodingError(MoyaError)
     
     var errorDescription: String? {
         switch self {
@@ -25,11 +23,9 @@ enum ApiError: Error, LocalizedError {
             return "No data was received from the server."
         case .invalidResponse(let statusCode):
             return "Received an invalid response from the server with statuscode: \(statusCode)"
-        case .decodingError:
-            return "Failed to deccode the response data."
         case .unknown(let error):
             return error.localizedDescription
-        case .moyaError(let error):
+        case .decodingError(let error):
             return error.errorDescription
         }
     }

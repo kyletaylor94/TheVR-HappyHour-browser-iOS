@@ -18,7 +18,8 @@ class HappyHourViewModel: ObservableObject {
     @Published var isLoading = true
     
     @Published var currentPage: Int = -8
-    @Published var totalSearchPages: Int = 1740
+    @Published var totalSearchPages: Int?
+    
     @Published var page: HappyHourPageModel?
     @Published var allVideos: [HappyHourVideoModel] = []
     
@@ -64,6 +65,7 @@ class HappyHourViewModel: ObservableObject {
     
     func searchEpisodes(option: SearchOption ,query: String) async -> [HappyHourVideoModel] {
         searchResults = []
+        guard let totalSearchPages = allVideos.first?.part else { return [] }
         
         if let cachedResults = await fetchFromCoreData(query: query, option: option) {
             if !cachedResults.isEmpty {
@@ -109,6 +111,7 @@ class HappyHourViewModel: ObservableObject {
     
     
     func hasMorePages() -> Bool {
+        guard let totalSearchPages = allVideos.first?.part else { return false }
         return currentPage < totalSearchPages
     }
     
