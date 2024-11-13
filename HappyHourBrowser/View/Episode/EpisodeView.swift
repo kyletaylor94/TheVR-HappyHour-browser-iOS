@@ -10,19 +10,21 @@ import Shimmer
 
 struct EpisodeView: View {
     @Binding var isSeachingActive: Bool
-    let episodes: [HappyHourVideoModel]
+    var episodes: [HappyHourVideoModel]
     @ObservedObject var viewModel: HappyHourViewModel
+    @ObservedObject var spotifyVM: SpotifyViewModel
+    
     
     var body: some View {
         ZStack(alignment: .bottomTrailing){
-            EpisodeScrollView(viewModel: viewModel, episodes: episodes)
+            EpisodeScrollView(viewModel: viewModel, spotifyVM: spotifyVM, episodes: episodes)
                 .padding(.top, 30)
-                .redacted(reason: viewModel.isLoading ?  .placeholder : .invalidated)
+                .redacted(reason: viewModel.apiIsLoading || viewModel.dbIsLoading ?  .placeholder : .invalidated)
 
             CustomSearchButton(isSearchingActive: $isSeachingActive)
                 .padding(.trailing, 40)
                 .padding(.bottom, 50)
-                .disabled(viewModel.isLoading ? true : false)
+                .disabled(viewModel.apiIsLoading || viewModel.dbIsLoading ? true : false)
         }
     }
 }

@@ -14,6 +14,5 @@ struct BackgroundPicture: View {
             .resizable()
             .frame(height: UIScreen.main.bounds.height)
             .blur(radius: 2)
-
     }
 }

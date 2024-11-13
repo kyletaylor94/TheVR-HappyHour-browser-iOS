@@ -14,8 +14,6 @@ struct ContentView: View {
     
     var body: some View {
         HomeView(viewModel: viewModel)
-            .environment(\.managedObjectContext, CoreDataHelper.shared.persistentContainer.viewContext)
-        
             .onAppear{
                 if !disclaimer {
                     showDisclaimerAlert = true
@@ -41,6 +39,6 @@ extension ContentView {
 
 
 #Preview {
-    ContentView(viewModel: HappyHourViewModel(context: CoreDataHelper.shared.persistentContainer.viewContext))
+  //  ContentView(viewModel: HappyHourViewModel(apiService: HappyHourApiService(), storageService: HappyHourStorageService(), interactor: HappyHourInteractor(happyHourRepository: HappyHourRepository())))
 }
 

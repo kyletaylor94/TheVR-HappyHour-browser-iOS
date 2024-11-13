@@ -13,7 +13,8 @@ enum ApiError: Error, LocalizedError {
     case noData
     case invalidResponse(statusCode: Int)
     case unknown(Error)
-    case decodingError(MoyaError)
+    case decodingError
+    case spotifyAuthentication
     
     var errorDescription: String? {
         switch self {
@@ -25,8 +26,10 @@ enum ApiError: Error, LocalizedError {
             return "Received an invalid response from the server with statuscode: \(statusCode)"
         case .unknown(let error):
             return error.localizedDescription
-        case .decodingError(let error):
-            return error.errorDescription
+        case .decodingError:
+            return "Could not decode the response"
+        case .spotifyAuthentication:
+            return "Failed to Spotify authentication"
         }
     }
 }

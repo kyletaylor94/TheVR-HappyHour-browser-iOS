@@ -10,44 +10,61 @@ import SwiftUI
 struct HomeView: View {
     @ObservedObject var viewModel: HappyHourViewModel
     @State private var isSeachingActive = false
+    @StateObject var spotifyVM = SpotifyViewModel()
+    
+    init(viewModel: HappyHourViewModel) {
+        self.viewModel = HappyHourViewModel()
+    }
     
     var body: some View {
         NavigationStack{
             ZStack{
                 BackgroundPicture()
                     .opacity(isSeachingActive ? 0.7 : 1)
-                        EpisodeView(isSeachingActive: $isSeachingActive, episodes: viewModel.allVideos, viewModel: viewModel)
-                            .opacity(isSeachingActive ? 0.3 : 1)
-                            .disabled(isSeachingActive || viewModel.isLoading)
+                    .accessibilityIdentifier("backgroundPicture")
+
                 
-                SearchView(isSearcinhgActive: $isSeachingActive, viewModel: viewModel)
+                EpisodeView(isSeachingActive: $isSeachingActive, episodes: viewModel.allVideos, viewModel: viewModel, spotifyVM: spotifyVM)
+                    .opacity(isSeachingActive ? 0.3 : 1)
+                    .disabled(isSeachingActive || viewModel.apiIsLoading || viewModel.dbIsLoading)
+
+                
+                SearchView(isSearcinhgActive: $isSeachingActive, viewModel: viewModel,spotifyVM: spotifyVM)
                     .opacity(isSeachingActive ? 1 : 0)
+                    .accessibilityIdentifier("searchButton")
+
             }
-            .alert(isPresented: $viewModel.hasError, content: {
+            .alert(isPresented: $viewModel.hasApiError, content: {
                 createApiAlert(title: "Error!", message: viewModel.apiErrorType?.errorDescription ?? "Unknown error!", primaryButtonString: "Retry") {
                     Task { await viewModel.loadPage(targetPage: viewModel.currentPage) }
+                }
+            })
+            .alert(isPresented: $viewModel.hasDBError, content: {
+                createApiAlert(title: "Error!", message: viewModel.dbErrorType?.description ?? "Unknown error!", primaryButtonString: "Retry") {
+                    Task { try await viewModel.syncEpisodes() }
                 }
             })
         }
         .onAppear{
             Task {
-                await viewModel.syncEpisodesWithCoreData()
                 await viewModel.loadPage(targetPage: viewModel.currentPage)
+                try await viewModel.syncEpisodes()
+                try await Task.sleep(nanoseconds: 500_000_000)
+                await spotifyVM.fetchSpotifyEpisodes()
+                print("SpotifyEpisodesCOUNT: \(spotifyVM.episodes.count)")
             }
         }
     }
-    
 }
 
 #Preview {
-    HomeView(viewModel: HappyHourViewModel(context: CoreDataHelper.shared.persistentContainer.viewContext))
-        
+    HomeView(viewModel: HappyHourViewModel())
 }
 
 extension HomeView {
     private func createApiAlert(title: String, message: String, primaryButtonString: String, task: @escaping () -> Void) -> Alert {
         return Alert(title: Text(title), message: Text(message), primaryButton: .default(Text(primaryButtonString), action: {
-                 task()
+            task()
         }), secondaryButton: .cancel())
     }
 }

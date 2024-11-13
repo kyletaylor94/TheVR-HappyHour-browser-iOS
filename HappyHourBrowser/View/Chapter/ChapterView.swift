@@ -24,6 +24,10 @@ struct ChapterView: View {
         return episode.timeStampText.components(separatedBy: "\n")
     }
     
+    var formattedSpotifyLink: String?  {
+        return episode.spotifyUrl?.spotify ?? ""
+    }
+    
     @Binding var isLoading: Bool
         
     var body: some View {
@@ -41,7 +45,6 @@ struct ChapterView: View {
                         episode: episode,
                         isLoading: $isLoading
                     )
-                        
 
             //Chapter Info
                     MediaContentView(
@@ -65,7 +68,7 @@ struct ChapterView: View {
                     
             // Spotify Button
                     CustomMediaButton(
-                        url: Constants.Urls.spotifyUrl,
+                        url: formattedSpotifyLink ?? "",
                         iconName: Constants.Icons.spotify,
                         titleName: "Find on Spotify",
                         width: Constants.rectangleWidth,

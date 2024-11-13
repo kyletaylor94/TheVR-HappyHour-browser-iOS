@@ -20,6 +20,8 @@ struct InputAndSearchButtonView: View {
     @Binding var navigateToResult: Bool
     
     @ObservedObject var viewModel: HappyHourViewModel
+    @ObservedObject var spotifyVM: SpotifyViewModel
+    
     
     var textfieldInputDateFormatter: DateFormatter {
         let formatter = DateFormatter()
@@ -64,20 +66,19 @@ struct InputAndSearchButtonView: View {
                         textFieldIsEmpty = newValue.isEmpty
                     }
                     .keyboardType(.alphabet)
-                
             }
             
             SearchButton(navigateToResult: $navigateToResult, textFieldIsEmpty: $textFieldIsEmpty)
                 .navigationDestination(isPresented: $navigateToResult, destination: {
                     switch selectedSearchOption {
                     case .byPart:
-                        ResultsView(viewModel: viewModel ,searchedText: $searchByPart, selectedOption: selectedSearchOption)
+                        ResultsView(viewModel: viewModel, spotifyVM: spotifyVM ,searchedText: $searchByPart, selectedOption: selectedSearchOption)
                         
                     case .byDate:
-                        ResultsView(viewModel: viewModel ,searchedText: $searchByDate, selectedOption: selectedSearchOption)
+                        ResultsView(viewModel: viewModel ,spotifyVM: spotifyVM, searchedText: $searchByDate, selectedOption: selectedSearchOption)
                         
                     case .byText:
-                        ResultsView(viewModel: viewModel ,searchedText: $searchByText, selectedOption: selectedSearchOption)
+                        ResultsView(viewModel: viewModel,spotifyVM: spotifyVM ,searchedText: $searchByText, selectedOption: selectedSearchOption)
                     }
                 })
         }

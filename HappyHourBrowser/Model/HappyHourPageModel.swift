@@ -8,7 +8,7 @@
 import Foundation
 
 struct HappyHourPageModel: Codable {
-    let hhVideos: [HappyHourVideoModel]
+    var hhVideos: [HappyHourVideoModel]
     let page: Int
     
     private enum CodingKeys: String, CodingKey {

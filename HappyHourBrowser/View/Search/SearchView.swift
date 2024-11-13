@@ -20,13 +20,14 @@ struct SearchView: View {
     @State private var searchByDate: String = ""
     @State private var searchByPart: String = ""
     
-    
     @State private var navigateToResult: Bool = false
     @State private var textFieldIsEmpty: Bool  = true
     
     @Binding var isSearcinhgActive: Bool
     
     @ObservedObject var viewModel: HappyHourViewModel
+    @ObservedObject var spotifyVM: SpotifyViewModel
+    
     
     @State private var currentDate = Date.now
     
@@ -46,7 +47,8 @@ struct SearchView: View {
                     searchByText: $searchByText,
                     currentDate: $currentDate,
                     navigateToResult: $navigateToResult,
-                    viewModel: viewModel
+                    viewModel: viewModel,
+                    spotifyVM: spotifyVM
                 )
             }
             .padding(3)
@@ -83,13 +85,5 @@ struct SearchView: View {
         searchByDate = ""
         searchByPart = ""
         searchByText = ""
-    }
-}
-
-
-
-#Preview {
-    ZStack{
-        SearchView(isSearcinhgActive: .constant(false), viewModel: HappyHourViewModel(context: CoreDataHelper.shared.persistentContainer.viewContext))
     }
 }

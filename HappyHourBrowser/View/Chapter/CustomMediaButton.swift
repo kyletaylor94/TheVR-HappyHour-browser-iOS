@@ -13,7 +13,7 @@ struct CustomMediaButton: View {
     let iconName: String
     let titleName: String
     let width: CGFloat
-    
+        
     @Binding var isLoading: Bool
         
     var body: some View {

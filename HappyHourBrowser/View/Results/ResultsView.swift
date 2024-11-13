@@ -10,8 +10,10 @@ import SwiftUI
 
 struct ResultsView: View {
     @ObservedObject var viewModel: HappyHourViewModel
+    @ObservedObject var spotifyVM: SpotifyViewModel
     @Binding var searchedText: String
     var selectedOption: SearchOption
+    @State private var isLoading = true
     
     var body: some View {
         ZStack{
@@ -22,35 +24,23 @@ struct ResultsView: View {
                     .padding(.top, 40)
                 
                 Spacer()
-                                
-                if viewModel.isLoading {
-                    
+                                                
+                if isLoading {
                     CustomProgressView()
-                        
                     Spacer()
-
-                } else if viewModel.searchResults.isEmpty {
+                } else if !viewModel.searchVideos.isEmpty {
+                    EpisodeScrollView(viewModel: viewModel, spotifyVM: spotifyVM, episodes: viewModel.searchVideos)
+                } else {
                     NoResultsView()
                     Spacer()
-
-                } else {
-                    EpisodeScrollView(viewModel: viewModel, episodes: viewModel.searchResults)
-                        .padding(.top, -30)
                 }
             }
         }
-        .onAppear{
+        .onAppear {
             Task {
-                switch selectedOption {
-                    
-                case .byPart:
-                    await viewModel.searchEpisodes(option: .byPart, query: searchedText)
-                case .byDate:
-                    await viewModel.searchEpisodes(option: .byDate, query: searchedText)
-
-                case .byText:
-                    await viewModel.searchEpisodes(option: .byText, query: searchedText)
-
+                try await viewModel.startSearch(viewModel: viewModel, query: searchedText, option: selectedOption)
+                if !viewModel.searchVideos.isEmpty {
+                    self.isLoading = false
                 }
             }
         }
@@ -58,6 +48,3 @@ struct ResultsView: View {
     }
 }
 
-#Preview {
-    ResultsView(viewModel: HappyHourViewModel(context: CoreDataHelper.shared.persistentContainer.viewContext), searchedText: .constant(""), selectedOption: .byText)
-}

@@ -15,14 +15,5 @@ struct HappyHourVideoModel: Codable, Identifiable, Equatable {
     let videoCoverImg: String?
     let timeStampText: String
     let publishedDate: String
-    
-    init(entity: HappyHourEntity) {
-        self.id = Int(entity.id)
-        self.part = Int(entity.part)
-        self.title = entity.title ?? ""
-        self.videoId = entity.videoId ?? ""
-        self.videoCoverImg = entity.videoCoverImg ?? ""
-        self.timeStampText = entity.timeStampText ?? ""
-        self.publishedDate = entity.publishedDate ?? ""
-    }
+    var spotifyUrl: SpotifyEpisode.ExternalURL?
 }

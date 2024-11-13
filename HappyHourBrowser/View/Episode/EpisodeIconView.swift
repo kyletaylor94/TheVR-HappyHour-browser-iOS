@@ -14,7 +14,7 @@ struct EpisodeIconView: View {
     
     var body: some View {
         VStack(alignment: .center, spacing: 5) {
-            Image(systemName: Constants.Icons.calendar)
+            Image(systemName: Constants.Icons.coffee)
                 .shimmering(active: isLoading ? true : false)
 
             Text(String(part))
