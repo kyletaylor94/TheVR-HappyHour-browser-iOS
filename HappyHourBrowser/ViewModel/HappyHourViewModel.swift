@@ -89,15 +89,5 @@ class HappyHourViewModel: ObservableObject {
             self.dbErrorType = .cannotSyncEpisodes
         }
     }
-    
-    
-    func updateSpotifyUrls(from episodes: [SpotifyEpisode]) async{
-        for (index, episode) in episodes.enumerated() {
-            if index < allVideos.count {
-                //  print("ALLVIDEO count: \(allVideos.count) : SpotifyIndex: \(index)")
-                allVideos[index].spotifyUrl = episode.external_urls
-            }
-        }
-    }
 }
 

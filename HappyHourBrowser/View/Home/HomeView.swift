@@ -49,9 +49,10 @@ struct HomeView: View {
             Task {
                 await viewModel.loadPage(targetPage: viewModel.currentPage)
                 try await viewModel.syncEpisodes()
+                await spotifyVM.spotifyAuthentication()
                 try await Task.sleep(nanoseconds: 500_000_000)
-                await spotifyVM.fetchSpotifyEpisodes()
-                print("SpotifyEpisodesCOUNT: \(spotifyVM.episodes.count)")
+                await spotifyVM.fetchSpotifyEpisodes(viewModel: viewModel)
+                await spotifyVM.updateSpotifyUrls(viewModel: viewModel)
             }
         }
     }

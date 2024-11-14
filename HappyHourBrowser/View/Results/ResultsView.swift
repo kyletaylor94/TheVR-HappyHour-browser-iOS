@@ -24,7 +24,7 @@ struct ResultsView: View {
                     .padding(.top, 40)
                 
                 Spacer()
-                                                
+                
                 if isLoading {
                     CustomProgressView()
                     Spacer()

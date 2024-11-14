@@ -9,52 +9,17 @@ import Foundation
 
 @MainActor
 class SpotifyViewModel: ObservableObject {
-    //    private let apiService = HappyHourApiServiceImpl()
-    //    @Published var episodes: [SpotifyEpisode] = []
-    //    @Published var hasMorePages: Bool = true
-    //
-    //    private var offset: Int = 0
-    //    private let limit: Int = 20
-    //
-    //    private let happyHourVM: HappyHourViewModel
-    //
-    //       init(happyHourVM: HappyHourViewModel) {
-    //           self.happyHourVM = happyHourVM
-    //       }
-    //
-    //
-    //    func authenticate() async {
-    //        apiService.spotifyAuthentication()
-    //    }
-    //
-    //    func fetchEpisodes() async {
-    //        offset = 0
-    //        await fetchNextEpisodes()
-    //    }
-    //
-    //    func fetchNextEpisodes() async {
-    //        guard hasMorePages else { return }
-    //
-    //        do {
-    //            let newEpisodes = try await apiService.fetchSpotifyEpisodes(for: "2TViVtEtC5NjM1xEwkXK0c", offset: offset, limit: limit)
-    //
-    //            if newEpisodes.isEmpty {
-    //                hasMorePages = false
-    //            } else {
-    //                self.episodes.append(contentsOf: newEpisodes)
-    //                offset += limit
-    //                await happyHourVM.updateSpotifyUrls(from: newEpisodes)
-    //            }
-    //        } catch {
-    //            print("somethging went wrong here \(error.localizedDescription)")
-    //        }
-    //    }
+ 
+    //TODO: Clean code for the Spotify: Repository - Interactor - ViewModel
+    //TODO: Bug - Episode 1714 is missing from the TheVR site, but on the spotify it is exist.
+    //TODO: Bug - After install app - no data content available, if I close and reopen the app, apicall works fine.
     
     @Published var episodes: [SpotifyEpisode] = []
     @Published var hasMorePages: Bool = true
     
     private var offset = 0
-    private let limit: Int = 20
+    private let limit: Int = 8
+    private var spotifyToken: String? = ""
     
     private var interactor: SpotifyInteractor {
         guard let container = DependencyContainer.shared.container.resolve(SpotifyInteractor.self) else {
@@ -63,17 +28,44 @@ class SpotifyViewModel: ObservableObject {
         return container
     }
     
-    
-    func fetchSpotifyEpisodes() async {
+    func spotifyAuthentication() async {
         do {
-            self.episodes.append(contentsOf: try await self.interactor.fetchSpotifyEpisodesFromRepo(offset: offset, limit: limit))
+            self.spotifyToken = try await self.interactor.fetchSpotifyTokenFromRepo()
+        } catch {
+            print("DEBUG: SpotifyAuthentication Failed! - \(error.localizedDescription)")
+        }
+    }
+    
+    func fetchSpotifyEpisodes(viewModel: HappyHourViewModel) async {
+        guard hasMorePages else { return }
+        guard let spotifyToken else { return }
+        
+        do {
+            let newEpisodes = try await interactor.fetchSpotifyEpisodesFromRepo(offset: offset, limit: limit, spotifyToken: spotifyToken)
+            
+            if viewModel.allVideos.isEmpty || viewModel.allVideos.count < limit {
+                hasMorePages = false
+            } else {
+                offset += limit
+            }
+            self.episodes.append(contentsOf: newEpisodes)
         } catch {
             print("DEBUG: Cannot fetch Spotify episodes: \(error.localizedDescription)")
         }
     }
     
-    //TODO: Load nextPage
-    //TODO: Sync with database - write spotifyLink into the DB!
+    func loadNextPageOnSpotify(viewModel: HappyHourViewModel) async {
+        await fetchSpotifyEpisodes(viewModel: viewModel)
+    }
     
-    
+
+    func updateSpotifyUrls(viewModel: HappyHourViewModel) async {
+        for (index, episode) in episodes.enumerated() {
+            if index < viewModel.allVideos.count {
+                print("THIS IS: \(viewModel.allVideos[index])")
+                //  print("ALLVIDEO count: \(allVideos.count) : SpotifyIndex: \(index)")
+                viewModel.allVideos[index].spotifyUrl = episode.external_urls
+            }
+        }
+    }
 }

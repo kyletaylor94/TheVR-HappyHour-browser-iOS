@@ -26,16 +26,13 @@ struct EpisodeScrollView: View {
                         Task {
                             if episode == episodes.last {
                                  await viewModel.loadNextPage()
+                                 await spotifyVM.loadNextPageOnSpotify(viewModel: viewModel)
+                                 await spotifyVM.updateSpotifyUrls(viewModel: viewModel)
                             }
+                            
                            try await viewModel.saveVideo(video: episode)
                         }
                     }
-//                    .task {
-//                        if episode == episodes.last {
-//                             await viewModel.loadNextPage()
-//                        }
-//                       try await viewModel.saveVideo(video: episode)
-//                    }
                 }
             }
         }

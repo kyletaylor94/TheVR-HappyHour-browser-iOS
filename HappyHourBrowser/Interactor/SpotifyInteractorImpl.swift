@@ -23,9 +23,9 @@ class SpotifyInteractorImpl: SpotifyInteractor {
         return response.access_token
     }
     
-    func fetchSpotifyEpisodesFromRepo(offset: Int, limit: Int) async throws -> [SpotifyEpisode] {
+    func fetchSpotifyEpisodesFromRepo(offset: Int, limit: Int, spotifyToken: String) async throws -> [SpotifyEpisode] {
         let showID = "2TViVtEtC5NjM1xEwkXK0c"
-        let spotifyToken = try await fetchSpotifyTokenFromRepo()
+       // let spotifyToken = try await fetchSpotifyTokenFromRepo()
         
         return try await dependencyContainer.fetchSpotifyEpisodesFromService(for: showID, offset: offset, limit: limit, accessToken: spotifyToken)
     }

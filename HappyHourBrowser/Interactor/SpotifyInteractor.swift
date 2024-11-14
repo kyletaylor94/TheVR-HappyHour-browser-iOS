@@ -9,5 +9,6 @@ import Foundation
 
 protocol SpotifyInteractor {
     func fetchSpotifyTokenFromRepo() async throws -> String?
-    func fetchSpotifyEpisodesFromRepo(offset: Int, limit: Int) async throws -> [SpotifyEpisode]
+  //  func fetchSpotifyEpisodesFromRepo(offset: Int, limit: Int) async throws -> [SpotifyEpisode]
+    func fetchSpotifyEpisodesFromRepo(offset: Int, limit: Int, spotifyToken: String) async throws -> [SpotifyEpisode]
 }

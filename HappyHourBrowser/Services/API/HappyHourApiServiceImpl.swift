@@ -9,7 +9,7 @@ import Foundation
 import Moya
 
 class HappyHourApiServiceImpl: HappyHourApiService {
-
+    
     private let provider = MoyaProvider<HappyHourAPI>()
     
     private let cliendID = ""
@@ -35,9 +35,9 @@ class HappyHourApiServiceImpl: HappyHourApiService {
             }
         }
     }
-
-        
-
+    
+    
+    
     //MARK: - Spotify
     func spotifyAuthentication() async throws -> SpotifyTokenResponse? {
         return try await withCheckedThrowingContinuation { continuation in
@@ -45,6 +45,7 @@ class HappyHourApiServiceImpl: HappyHourApiService {
                 switch result {
                 case .success(let response):
                     if let tokenResponse = try? JSONDecoder().decode(SpotifyTokenResponse.self, from: response.data) {
+                        print("SPOTIFYSTATUSCODE: \(response.statusCode)")
                         continuation.resume(returning: tokenResponse)
                     } else {
                         print("DEBUG: Decoding error - SpotifyAuthentication")
