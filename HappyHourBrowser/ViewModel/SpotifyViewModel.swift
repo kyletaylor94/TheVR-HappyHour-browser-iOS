@@ -9,10 +9,12 @@ import Foundation
 
 @MainActor
 class SpotifyViewModel: ObservableObject {
- 
+    
     //TODO: Clean code for the Spotify: Repository - Interactor - ViewModel
-    //TODO: Bug - Episode 1714 is missing from the TheVR site, but on the spotify it is exist.
+    //TODO: After searching - insert spotify link to the db
+    //TODO: Bug - Episode 1714, and 1694  is missing from the TheVR site, but on the spotify it is exist. - DONE
     //TODO: Bug - After install app - no data content available, if I close and reopen the app, apicall works fine.
+    
     
     @Published var episodes: [SpotifyEpisode] = []
     @Published var hasMorePages: Bool = true
@@ -58,14 +60,16 @@ class SpotifyViewModel: ObservableObject {
         await fetchSpotifyEpisodes(viewModel: viewModel)
     }
     
-
+    
     func updateSpotifyUrls(viewModel: HappyHourViewModel) async {
-        for (index, episode) in episodes.enumerated() {
-            if index < viewModel.allVideos.count {
-                print("THIS IS: \(viewModel.allVideos[index])")
-                //  print("ALLVIDEO count: \(allVideos.count) : SpotifyIndex: \(index)")
-                viewModel.allVideos[index].spotifyUrl = episode.external_urls
+        episodes = episodes.filter({ episode in
+            if let episodeNumber = FormatHelper.extractSpotifyEpisodeNumber(from: episode.name),
+               let matchingVideoIndex = viewModel.allVideos.firstIndex(where: { $0.part == episodeNumber }) {
+                //save to the db
+                viewModel.allVideos[matchingVideoIndex].spotifyUrl = episode.external_urls
+                return true
             }
-        }
+            return false
+        })
     }
 }

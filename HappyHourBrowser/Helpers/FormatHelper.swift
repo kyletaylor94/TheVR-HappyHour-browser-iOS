@@ -62,4 +62,21 @@ class FormatHelper {
         let thumbnailUrl = thumbnailEndpointTemplate.replacingOccurrences(of: "%s", with: videoId)
         return thumbnailUrl
     }
+    
+    //MARK: - Spotify
+   static func extractSpotifyEpisodeNumber(from episodeName: String) -> Int? {
+        let components = episodeName.split(separator: "|")
+        
+        guard components.count > 1 else { return nil }
+        
+        let lastComponent = components[1].trimmingCharacters(in: .whitespaces)
+        let parts = lastComponent.split(separator: "-")
+        
+        if let numberString = parts.first?.components(separatedBy: CharacterSet.decimalDigits.inverted).joined(),
+           let episodeNumber = Int(numberString) {
+            return episodeNumber
+        }
+        
+        return nil
+    }
 }
