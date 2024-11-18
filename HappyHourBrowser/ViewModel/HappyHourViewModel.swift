@@ -21,7 +21,6 @@ class HappyHourViewModel: ObservableObject {
     @Published var apiIsLoading = true
     @Published var dbIsLoading = true
 
-    
     @Published var currentPage: Int = -8
     
     @Published var allVideos: [HappyHourVideoModel] = []

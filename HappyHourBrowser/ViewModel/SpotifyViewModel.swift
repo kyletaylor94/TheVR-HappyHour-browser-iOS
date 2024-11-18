@@ -5,22 +5,18 @@
 //  Created by Turdesan Csaba on 2024. 10. 26..
 //
 
+//TODO: Clean code for the Spotify: Repository - Interactor - ViewModel - DONE
+//TODO: After searching - insert spotify link to the db
+//TODO: Bug - After install app - no data content available, if I close and reopen the app, apicall works fine. - DONE
+
 import Foundation
 
 @MainActor
 class SpotifyViewModel: ObservableObject {
     
-    //TODO: Clean code for the Spotify: Repository - Interactor - ViewModel
-    //TODO: After searching - insert spotify link to the db
-    //TODO: Bug - Episode 1714, and 1694  is missing from the TheVR site, but on the spotify it is exist. - DONE
-    //TODO: Bug - After install app - no data content available, if I close and reopen the app, apicall works fine.
-    
-    
     @Published var episodes: [SpotifyEpisode] = []
     @Published var hasMorePages: Bool = true
     
-    private var offset = 0
-    private let limit: Int = 8
     private var spotifyToken: String? = ""
     
     private var interactor: SpotifyInteractor {
@@ -39,37 +35,28 @@ class SpotifyViewModel: ObservableObject {
     }
     
     func fetchSpotifyEpisodes(viewModel: HappyHourViewModel) async {
-        guard hasMorePages else { return }
         guard let spotifyToken else { return }
         
         do {
-            let newEpisodes = try await interactor.fetchSpotifyEpisodesFromRepo(offset: offset, limit: limit, spotifyToken: spotifyToken)
-            
-            if viewModel.allVideos.isEmpty || viewModel.allVideos.count < limit {
-                hasMorePages = false
-            } else {
-                offset += limit
-            }
+            let (newEpisodes, hasMorePages) = try await interactor.fetchPaginatedEpisodes(happyHourVM: viewModel, token: spotifyToken)
             self.episodes.append(contentsOf: newEpisodes)
+            self.hasMorePages = hasMorePages
         } catch {
             print("DEBUG: Cannot fetch Spotify episodes: \(error.localizedDescription)")
         }
     }
-    
-    func loadNextPageOnSpotify(viewModel: HappyHourViewModel) async {
-        await fetchSpotifyEpisodes(viewModel: viewModel)
+     
+    func updateSpotifyUrls(viewModel: HappyHourViewModel) async {
+        do {
+            self.episodes = try await interactor.syncEpisodes(happyHourVM: viewModel, spotifyEpisodes: self.episodes)
+        } catch {
+            print("DEBUG: - Cannot sync/save spotify episodes")
+        }
     }
     
-    
-    func updateSpotifyUrls(viewModel: HappyHourViewModel) async {
-        episodes = episodes.filter({ episode in
-            if let episodeNumber = FormatHelper.extractSpotifyEpisodeNumber(from: episode.name),
-               let matchingVideoIndex = viewModel.allVideos.firstIndex(where: { $0.part == episodeNumber }) {
-                //save to the db
-                viewModel.allVideos[matchingVideoIndex].spotifyUrl = episode.external_urls
-                return true
-            }
-            return false
-        })
+    func resetPagination() {
+        self.interactor.resetPagination()
+        episodes = []
+        hasMorePages = true
     }
 }

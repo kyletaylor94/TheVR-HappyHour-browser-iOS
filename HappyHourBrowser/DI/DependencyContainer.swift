@@ -14,11 +14,11 @@ class DependencyContainer {
     let container = Container()
     
     private init() {
-        registerhappyHourDependencies()
+        registerHappyHourDependencies()
         registerSpotifyDependencies()
     }
     
-    private func registerhappyHourDependencies() {
+    private func registerHappyHourDependencies() {
         container.register(HappyHourApiService.self) { _ in
            return HappyHourApiServiceImpl()
         }.inObjectScope(.container)
@@ -42,6 +42,11 @@ class DependencyContainer {
     }
     
     private func registerSpotifyDependencies() {
+        container.register(SpotifyApiService.self) {_ in
+            return SpotifyApiServiceImpl()
+        }.inObjectScope(.container)
+        
+        
         container.register(SpotifyInteractor.self) { _ in
             return SpotifyInteractorImpl()
         }.inObjectScope(.container)

@@ -9,6 +9,14 @@ import Foundation
 
 protocol SpotifyInteractor {
     func fetchSpotifyTokenFromRepo() async throws -> String?
-  //  func fetchSpotifyEpisodesFromRepo(offset: Int, limit: Int) async throws -> [SpotifyEpisode]
-    func fetchSpotifyEpisodesFromRepo(offset: Int, limit: Int, spotifyToken: String) async throws -> [SpotifyEpisode]
+
+    func resetPagination()
+    func fetchPaginatedEpisodes(happyHourVM: HappyHourViewModel, token: String?) async throws -> ([SpotifyEpisode], Bool)
+
+    
+    func syncEpisodes(happyHourVM: HappyHourViewModel, spotifyEpisodes: [SpotifyEpisode]) async throws -> [SpotifyEpisode]
+    func saveSpotifyEpisodes(happyHourVM: HappyHourViewModel, matchingVideoIndex: Int ,episode: SpotifyEpisode)
 }
+
+
+

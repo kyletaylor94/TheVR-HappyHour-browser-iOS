@@ -9,6 +9,4 @@ import Foundation
 
 protocol HappyHourApiService {
     func getLoadHappyHourPage(targetPage: Int) async throws -> HappyHourPageModel
-    func spotifyAuthentication() async throws -> SpotifyTokenResponse?
-    func fetchSpotifyEpisodes(for showID: String, offset: Int, limit: Int, accessToken: String?) async throws -> [SpotifyEpisode]
 }

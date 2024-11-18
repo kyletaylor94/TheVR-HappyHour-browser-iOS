@@ -29,6 +29,7 @@ struct HappyHourBrowserApp: App {
     
     init() {
         guard let resolvedViewModel = DependencyContainer.shared.container.resolve(HappyHourViewModel.self) else {
+            print("firstartime error")
             preconditionFailure("Failed to resolve: \(HappyHourViewModel.self)")
         }
         _viewModel = StateObject(wrappedValue: resolvedViewModel)

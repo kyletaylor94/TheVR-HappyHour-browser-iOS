@@ -8,11 +8,11 @@
 import Foundation
 
 @MainActor
-class SpotifyRepositoryImpl: SpotifyRepository {
+class SpotifyRepositoryImpl: @preconcurrency SpotifyRepository {
     
-    private var dependencyContainer: HappyHourApiService {
-        guard let container = DependencyContainer.shared.container.resolve(HappyHourApiService.self) else {
-            preconditionFailure("DEBUG: Cannot resolve: \(HappyHourApiService.self)")
+    private var dependencyContainer: SpotifyApiService {
+        guard let container = DependencyContainer.shared.container.resolve(SpotifyApiService.self) else {
+            preconditionFailure("DEBUG: Cannot resolve: \(SpotifyApiService.self)")
         }
         return container
     }
@@ -25,5 +25,6 @@ class SpotifyRepositoryImpl: SpotifyRepository {
         return try await dependencyContainer.fetchSpotifyEpisodes(for: showID, offset: offset, limit: limit, accessToken: accessToken)
     }
     
+  
     
 }
