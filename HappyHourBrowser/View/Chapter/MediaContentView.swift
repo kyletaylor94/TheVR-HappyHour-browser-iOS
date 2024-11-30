@@ -75,7 +75,7 @@ struct MediaContentView: View {
                     }
                     .redacted(reason: isLoading ?  .placeholder : .invalidated)
                     .shimmering(active: isLoading ? true : false)
-                    .foregroundStyle(Constants.chapterBlackColor)
+                    .foregroundStyle(Constants.ChapterColor.chapterBlackColor)
                     .padding(.horizontal, 8)
                 }
         }

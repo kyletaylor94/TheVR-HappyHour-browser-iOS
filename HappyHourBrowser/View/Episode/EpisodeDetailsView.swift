@@ -24,6 +24,6 @@ struct EpisodeDetailsView: View {
             }
         }
         .font(.subheadline)
-        .foregroundStyle(Constants.chapterBlackColor)
+        .foregroundStyle(Constants.ChapterColor.chapterBlackColor)
     }
 }

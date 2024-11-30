@@ -25,12 +25,11 @@ struct SearchView: View {
     
     @Binding var isSearcinhgActive: Bool
     
-    @ObservedObject var viewModel: HappyHourViewModel
+    @ObservedObject var happyHourVM: HappyHourViewModel
     @ObservedObject var spotifyVM: SpotifyViewModel
     
     
     @State private var currentDate = Date.now
-    
     
     var body: some View {
         VStack(alignment: .center){
@@ -47,7 +46,7 @@ struct SearchView: View {
                     searchByText: $searchByText,
                     currentDate: $currentDate,
                     navigateToResult: $navigateToResult,
-                    viewModel: viewModel,
+                    happyHourVM: happyHourVM,
                     spotifyVM: spotifyVM
                 )
             }
@@ -86,4 +85,8 @@ struct SearchView: View {
         searchByPart = ""
         searchByText = ""
     }
+}
+
+#Preview {
+    SearchView(isSearcinhgActive: .constant(true), happyHourVM: HappyHourViewModel(), spotifyVM: SpotifyViewModel())
 }

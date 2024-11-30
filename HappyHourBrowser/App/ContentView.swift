@@ -8,20 +8,10 @@
 import SwiftUI
 
 struct ContentView: View {
-//    @AppStorage("disclaimer") var disclaimer: Bool = false
-//    @State private var showDisclaimerAlert: Bool = false
-    @ObservedObject var viewModel: HappyHourViewModel
+    @ObservedObject var happyHourVM: HappyHourViewModel
     
     var body: some View {
-        HomeView(viewModel: viewModel)
-//            .onAppear{
-//                if !disclaimer {
-//                    showDisclaimerAlert = true
-//                }
-//            }
-//            .alert(isPresented: $showDisclaimerAlert) {
-//                createDisclamerAlert()
-//            }
+        HomeView(happyHourVM: happyHourVM)
     }
 }
 
@@ -29,6 +19,6 @@ struct ContentView: View {
 
 
 #Preview {
-    ContentView(viewModel: HappyHourViewModel())
+    ContentView(happyHourVM: HappyHourViewModel())
 }
 

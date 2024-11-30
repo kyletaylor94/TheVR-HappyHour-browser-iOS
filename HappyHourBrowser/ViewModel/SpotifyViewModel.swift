@@ -5,18 +5,12 @@
 //  Created by Turdesan Csaba on 2024. 10. 26..
 //
 
-//TODO: Clean code for the Spotify: Repository - Interactor - ViewModel - DONE
-//TODO: After searching - insert spotify link to the db
-//TODO: Bug - After install app - no data content available, if I close and reopen the app, apicall works fine. - DONE
-
 import Foundation
 
 @MainActor
 class SpotifyViewModel: ObservableObject {
     
-    @Published var episodes: [SpotifyEpisode] = []
-    @Published var hasMorePages: Bool = true
-    
+    @Published var spotifyEpisode: SpotifyEpisode? = nil
     private var spotifyToken: String? = ""
     
     private var interactor: SpotifyInteractor {
@@ -34,29 +28,13 @@ class SpotifyViewModel: ObservableObject {
         }
     }
     
-    func fetchSpotifyEpisodes(viewModel: HappyHourViewModel) async {
-        guard let spotifyToken else { return }
+    func searchResults(query: String) async {
+        guard let token = spotifyToken else { return }
         
         do {
-            let (newEpisodes, hasMorePages) = try await interactor.fetchPaginatedEpisodes(happyHourVM: viewModel, token: spotifyToken)
-            self.episodes.append(contentsOf: newEpisodes)
-            self.hasMorePages = hasMorePages
+            self.spotifyEpisode = try await interactor.fetchSearchedSpotifyEpisodes(query: query, token: token)
         } catch {
-            print("DEBUG: Cannot fetch Spotify episodes: \(error.localizedDescription)")
+            print("DEBUG: Cannot fetch search results: \(error.localizedDescription)")
         }
-    }
-     
-    func updateSpotifyUrls(viewModel: HappyHourViewModel) async {
-        do {
-            self.episodes = try await interactor.syncEpisodes(happyHourVM: viewModel, spotifyEpisodes: self.episodes)
-        } catch {
-            print("DEBUG: - Cannot sync/save spotify episodes")
-        }
-    }
-    
-    func resetPagination() {
-        self.interactor.resetPagination()
-        episodes = []
-        hasMorePages = true
     }
 }

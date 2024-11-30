@@ -25,10 +25,11 @@ struct ChapterView: View {
     }
     
     var formattedSpotifyLink: String?  {
-        return episode.spotifyUrl?.spotify ?? ""
+        return spotifyVM.spotifyEpisode?.external_urls.spotify ?? ""
     }
     
     @Binding var isLoading: Bool
+    @ObservedObject var spotifyVM: SpotifyViewModel
         
     var body: some View {
         ZStack {
@@ -49,7 +50,7 @@ struct ChapterView: View {
             //Chapter Info
                     MediaContentView(
                         isChapturePicture: false,
-                        width: Constants.rectangleWidth,
+                        width: Constants.RectangleFrame.rectangleWidth,
                         height: chapterInfoHeight,
                         episode: episode,
                         isLoading: $isLoading
@@ -61,7 +62,7 @@ struct ChapterView: View {
                         url: Constants.Urls.youtubeBaseUrl + episode.videoId,
                         iconName: Constants.Icons.youtube,
                         titleName: "Start on Youtube",
-                        width: Constants.rectangleWidth,
+                        width: Constants.RectangleFrame.rectangleWidth,
                         isLoading: $isLoading
                     )
                        
@@ -71,9 +72,10 @@ struct ChapterView: View {
                         url: formattedSpotifyLink ?? "",
                         iconName: Constants.Icons.spotify,
                         titleName: "Find on Spotify",
-                        width: Constants.rectangleWidth,
+                        width: Constants.RectangleFrame.rectangleWidth,
                         isLoading: $isLoading
                     )
+                
                       
                     
             // Chapters Details
@@ -99,6 +101,12 @@ struct ChapterView: View {
                             .foregroundStyle(.white)
                     }
                 }
+            }
+        }
+        .onAppear{
+            Task {
+                let query = "TheVR Happy Hour #\(episode.part)"
+                await spotifyVM.searchResults(query: query)
             }
         }
     }

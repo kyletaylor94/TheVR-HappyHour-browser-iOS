@@ -19,7 +19,7 @@ struct InputAndSearchButtonView: View {
     
     @Binding var navigateToResult: Bool
     
-    @ObservedObject var viewModel: HappyHourViewModel
+    @ObservedObject var happyHourVM: HappyHourViewModel
     @ObservedObject var spotifyVM: SpotifyViewModel
     
     
@@ -35,7 +35,7 @@ struct InputAndSearchButtonView: View {
             case .byPart:
                 SearchField(searchByText: $searchByPart, placeholder: "Part")
                     .onChange(of: searchByPart) { _, newValue in
-                        guard let firstPart = viewModel.allVideos.first?.part else {
+                        guard let firstPart = happyHourVM.allVideos.first?.part else {
                             searchByPart = ""
                             textFieldIsEmpty = true
                             return
@@ -72,13 +72,13 @@ struct InputAndSearchButtonView: View {
                 .navigationDestination(isPresented: $navigateToResult, destination: {
                     switch selectedSearchOption {
                     case .byPart:
-                        ResultsView(viewModel: viewModel, spotifyVM: spotifyVM ,searchedText: $searchByPart, selectedOption: selectedSearchOption)
+                        ResultsView(happyHourVM: happyHourVM, spotifyVM: spotifyVM ,searchedText: $searchByPart, selectedOption: selectedSearchOption)
                         
                     case .byDate:
-                        ResultsView(viewModel: viewModel ,spotifyVM: spotifyVM, searchedText: $searchByDate, selectedOption: selectedSearchOption)
+                        ResultsView(happyHourVM: happyHourVM ,spotifyVM: spotifyVM, searchedText: $searchByDate, selectedOption: selectedSearchOption)
                         
                     case .byText:
-                        ResultsView(viewModel: viewModel,spotifyVM: spotifyVM ,searchedText: $searchByText, selectedOption: selectedSearchOption)
+                        ResultsView(happyHourVM: happyHourVM,spotifyVM: spotifyVM ,searchedText: $searchByText, selectedOption: selectedSearchOption)
                     }
                 })
         }
@@ -89,4 +89,8 @@ struct InputAndSearchButtonView: View {
                 .foregroundStyle(.white.opacity(0.8))
         )
     }
+}
+
+#Preview {
+    InputAndSearchButtonView(selectedSearchOption: .constant(.byText), textFieldIsEmpty: .constant(true), searchByPart: .constant(""), searchByDate: .constant(""), searchByText: .constant(""), currentDate: .constant(Date()) , navigateToResult: .constant(false), happyHourVM: HappyHourViewModel(), spotifyVM: SpotifyViewModel())
 }

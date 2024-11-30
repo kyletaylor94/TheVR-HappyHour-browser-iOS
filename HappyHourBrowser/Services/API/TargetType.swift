@@ -5,7 +5,7 @@ import Foundation
 enum HappyHourAPI {
     case loadPage(targetPage: Int)
     case spotifyAuthentication(clientID: String, clientSecret: String)
-    case fetchSpotifyEpisodes(showID: String, offset: Int, limit: Int, accessToken: String?)
+    case searchSpotifyEpisodes(query: String, type: String, limit: Int, offset: Int, accessToken: String?)
 }
 
 extension HappyHourAPI: TargetType {
@@ -16,19 +16,22 @@ extension HappyHourAPI: TargetType {
             return URL(string: "https://thevr.hu/thevrapps/HappyHour/ajax.hhvideos.php")!
         case .spotifyAuthentication:
             return URL(string: "https://accounts.spotify.com")!
-        case .fetchSpotifyEpisodes:
+        case .searchSpotifyEpisodes:
             return URL(string: "https://api.spotify.com")!
         }
     }
     
     var path: String {
         switch self {
+            
         case .loadPage:
             return ""
+            
         case .spotifyAuthentication:
             return "/api/token"
-        case .fetchSpotifyEpisodes(let showID, _, _,_):
-            return "/v1/shows/\(showID)/episodes"
+            
+        case .searchSpotifyEpisodes:
+            return "v1/search"
         }
     }
     
@@ -36,7 +39,8 @@ extension HappyHourAPI: TargetType {
         switch self {
         case .loadPage, .spotifyAuthentication:
             return .post
-        case .fetchSpotifyEpisodes:
+            
+        case .searchSpotifyEpisodes:
             return .get
         }
     }
@@ -51,8 +55,15 @@ extension HappyHourAPI: TargetType {
             let parameters = ["grant_type": "client_credentials"]
             return .requestCompositeParameters(bodyParameters: parameters, bodyEncoding: URLEncoding.httpBody, urlParameters: [:])
             
-        case .fetchSpotifyEpisodes(_, let offset, let limit, _):
-            let parameters = ["offset": offset, "limit": limit]
+        
+        case .searchSpotifyEpisodes(let query, let type, let limit, let offset, _):
+            let parameters: [String: Any] = [
+                "q": query,
+                "type": type,
+                "limit": limit,
+                "offset": offset
+            ]
+            
             return .requestParameters(parameters: parameters, encoding: URLEncoding.default)
         }
     }
@@ -69,9 +80,9 @@ extension HappyHourAPI: TargetType {
                 "Content-Type": "application/x-www-form-urlencoded"
             ]
             
-        case .fetchSpotifyEpisodes(_,_,_,let accessToken):
+        case .searchSpotifyEpisodes(_,_,_,_, let accessToken):
             guard let token = accessToken else {
-                print("No access token available.")
+                print("no access token available")
                 return nil
             }
             return ["Authorization": "Bearer \(token)"]

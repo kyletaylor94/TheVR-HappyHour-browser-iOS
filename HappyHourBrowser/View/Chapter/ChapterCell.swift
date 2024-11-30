@@ -21,7 +21,7 @@ struct ChapterCell: View {
                 Text(chapter)
                     .font(.subheadline)
                     .fontWeight(.light)
-                    .foregroundColor(Constants.chapterBlackColor)
+                    .foregroundColor(Constants.ChapterColor.chapterBlackColor)
                     .lineLimit(1)
                 
                 Spacer()

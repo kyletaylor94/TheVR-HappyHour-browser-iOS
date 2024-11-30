@@ -11,12 +11,12 @@ struct HomeView: View {
     @AppStorage("disclaimer") var disclaimer: Bool = false
     @State private var showDisclaimerAlert: Bool = false
     
-    @ObservedObject var viewModel: HappyHourViewModel
+    @ObservedObject var happyHourVM: HappyHourViewModel
     @State private var isSeachingActive = false
     @StateObject var spotifyVM = SpotifyViewModel()
-    
-    init(viewModel: HappyHourViewModel) {
-        self.viewModel = HappyHourViewModel()
+        
+    init(happyHourVM: HappyHourViewModel) {
+        self.happyHourVM = HappyHourViewModel()
     }
     
     var body: some View {
@@ -27,24 +27,24 @@ struct HomeView: View {
                     .accessibilityIdentifier("backgroundPicture")
                 
                 
-                EpisodeView(isSeachingActive: $isSeachingActive, episodes: viewModel.allVideos, viewModel: viewModel, spotifyVM: spotifyVM)
+                EpisodeView(isSeachingActive: $isSeachingActive, happyHourVM: happyHourVM, spotifyVM: spotifyVM)
                     .opacity(isSeachingActive ? 0.3 : 1)
-                    .disabled(isSeachingActive || viewModel.apiIsLoading || viewModel.dbIsLoading)
+                    .disabled(isSeachingActive || happyHourVM.apiIsLoading || happyHourVM.dbIsLoading)
                 
                 
-                SearchView(isSearcinhgActive: $isSeachingActive, viewModel: viewModel,spotifyVM: spotifyVM)
+                SearchView(isSearcinhgActive: $isSeachingActive, happyHourVM: happyHourVM,spotifyVM: spotifyVM)
                     .opacity(isSeachingActive ? 1 : 0)
                     .accessibilityIdentifier("searchButton")
                 
             }
-            .alert(isPresented: $viewModel.hasApiError, content: {
-                createApiAlert(title: "Error!", message: viewModel.apiErrorType?.errorDescription ?? "Unknown error!", primaryButtonString: "Retry") {
-                    Task { await viewModel.loadPage(targetPage: viewModel.currentPage) }
+            .alert(isPresented: $happyHourVM.hasApiError, content: {
+                createApiAlert(title: "Error!", message: happyHourVM.apiErrorType?.errorDescription ?? "Unknown error!", primaryButtonString: "Retry") {
+                    Task { await happyHourVM.loadPage(targetPage: happyHourVM.currentPage) }
                 }
             })
-            .alert(isPresented: $viewModel.hasDBError, content: {
-                createApiAlert(title: "Error!", message: viewModel.dbErrorType?.description ?? "Unknown error!", primaryButtonString: "Retry") {
-                    Task { try await viewModel.syncEpisodes() }
+            .alert(isPresented: $happyHourVM.hasDBError, content: {
+                createApiAlert(title: "Error!", message: happyHourVM.dbErrorType?.description ?? "Unknown error!", primaryButtonString: "Retry") {
+                    Task { try await happyHourVM.syncEpisodes() }
                 }
             })
             .alert(isPresented: $showDisclaimerAlert) {
@@ -56,6 +56,8 @@ struct HomeView: View {
                 if !disclaimer {
                     showDisclaimerAlert = true
                     await initializeAppData()
+                } else {
+                    await initializeAppData()
                 }
             }
         }
@@ -63,18 +65,16 @@ struct HomeView: View {
     
     private func initializeAppData() async {
         Task {
-            await viewModel.loadPage(targetPage: viewModel.currentPage)
-            try await viewModel.syncEpisodes()
             await spotifyVM.spotifyAuthentication()
-            try await Task.sleep(nanoseconds: 500_000_000)
-            await spotifyVM.fetchSpotifyEpisodes(viewModel: viewModel)
-            await spotifyVM.updateSpotifyUrls(viewModel: viewModel)
+            await happyHourVM.loadPage(targetPage: happyHourVM.currentPage)
+            try await happyHourVM.syncEpisodes()
+           // await spotifyVM.updateSpotifyUrls(viewModel: viewModel)
         }
     }
 }
 
 #Preview {
-    HomeView(viewModel: HappyHourViewModel())
+    HomeView(happyHourVM: HappyHourViewModel())
 }
 
 extension HomeView {

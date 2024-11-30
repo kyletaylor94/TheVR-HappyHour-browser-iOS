@@ -11,7 +11,6 @@ import SwiftUI
 struct Constants {
     
     struct Urls {
-        static let spotifyUrl: String = "https://open.spotify.com/show/2TViVtEtC5NjM1xEwkXK0c"
         static let youtubeBaseUrl: String = "https://youtube.com/watch?v="
     }
     
@@ -37,11 +36,11 @@ struct Constants {
         static let four : CGFloat = 4
     }
     
-    static let rectangleWidth: CGFloat = UIScreen.main.bounds.width - 32
-    static let chapterBlackColor = Color(.black).opacity(0.8)
+    struct RectangleFrame {
+        static let rectangleWidth: CGFloat = UIScreen.main.bounds.width - 32
+    }
     
-    //MARK: - SpotifyID
-    struct SpotifyConstants {
-        static let showID = "2TViVtEtC5NjM1xEwkXK0c"
+    struct ChapterColor {
+        static let chapterBlackColor = Color(.black).opacity(0.8)
     }
 }

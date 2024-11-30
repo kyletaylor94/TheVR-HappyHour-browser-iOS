@@ -41,7 +41,7 @@ struct ChapterDetailsView: View {
             }
             .redacted(reason: isLoading ?  .placeholder : .invalidated)
             .shimmering(active: isLoading ? true : false)
-            .foregroundStyle(Constants.chapterBlackColor)
+            .foregroundStyle(Constants.ChapterColor.chapterBlackColor)
             .frame(height: 70)
             .onTapGesture {
                 withAnimation {
@@ -58,7 +58,7 @@ struct ChapterDetailsView: View {
             }
         }
         .padding(.horizontal, 8)
-        .frame(width: Constants.rectangleWidth)
+        .frame(width: Constants.RectangleFrame.rectangleWidth)
         .background(
             RoundedRectangle(cornerRadius: Constants.CornerRadius.eight)
                 .fill(.cellBG)

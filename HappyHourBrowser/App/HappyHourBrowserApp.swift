@@ -25,20 +25,19 @@ class AppDelegate: NSObject, UIApplicationDelegate {
 struct HappyHourBrowserApp: App {
     @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
         
-    @StateObject private var viewModel: HappyHourViewModel
+    @StateObject private var happyHourVM: HappyHourViewModel
     
     init() {
         guard let resolvedViewModel = DependencyContainer.shared.container.resolve(HappyHourViewModel.self) else {
-            print("firstartime error")
             preconditionFailure("Failed to resolve: \(HappyHourViewModel.self)")
         }
-        _viewModel = StateObject(wrappedValue: resolvedViewModel)
+        _happyHourVM = StateObject(wrappedValue: resolvedViewModel)
     }
     
    
     var body: some Scene {
         WindowGroup {
-            ContentView(viewModel: viewModel)
+            ContentView(happyHourVM: happyHourVM)
         }
     }
 }

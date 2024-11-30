@@ -9,7 +9,7 @@ import SwiftUI
 
 
 struct ResultsView: View {
-    @ObservedObject var viewModel: HappyHourViewModel
+    @ObservedObject var happyHourVM: HappyHourViewModel
     @ObservedObject var spotifyVM: SpotifyViewModel
     @Binding var searchedText: String
     var selectedOption: SearchOption
@@ -23,13 +23,16 @@ struct ResultsView: View {
                 ResultsTopView(searchedText: $searchedText)
                     .padding(.top, 40)
                 
+            
+                .padding(.top)
                 Spacer()
                 
                 if isLoading {
                     CustomProgressView()
                     Spacer()
-                } else if !viewModel.searchVideos.isEmpty {
-                    EpisodeScrollView(viewModel: viewModel, spotifyVM: spotifyVM, episodes: viewModel.searchVideos)
+                    
+                } else if !happyHourVM.searchVideos.isEmpty {
+                    EpisodeScrollView(happyHourVM: happyHourVM, spotifyVM: spotifyVM, episodes: happyHourVM.searchVideos)
                 } else {
                     NoResultsView()
                     Spacer()
@@ -38,13 +41,17 @@ struct ResultsView: View {
         }
         .onAppear {
             Task {
-                try await viewModel.startSearch(viewModel: viewModel, query: searchedText, option: selectedOption)
-                if !viewModel.searchVideos.isEmpty {
+                try await happyHourVM.startSearch(viewModel: happyHourVM, query: searchedText, option: selectedOption)
+                if !happyHourVM.searchVideos.isEmpty {
                     self.isLoading = false
                 }
             }
         }
         .navigationBarBackButtonHidden()
     }
+}
+
+#Preview {
+    ResultsView(happyHourVM: HappyHourViewModel(), spotifyVM: SpotifyViewModel(), searchedText: .constant(""), selectedOption: .byText)
 }
 

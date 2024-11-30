@@ -34,7 +34,7 @@ struct CustomMediaButton: View {
             .redacted(reason: isLoading ?  .placeholder : .invalidated)
             .shimmering(active: isLoading ? true : false)
             .fontWeight(.semibold)
-            .foregroundStyle(Constants.chapterBlackColor)
+            .foregroundStyle(Constants.ChapterColor.chapterBlackColor)
             .padding(.horizontal, 3)
             .frame(width: width, height: 30)
             .background(

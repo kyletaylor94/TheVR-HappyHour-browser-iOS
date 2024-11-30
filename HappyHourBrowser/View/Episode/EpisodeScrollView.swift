@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct EpisodeScrollView: View {
-    @ObservedObject var viewModel: HappyHourViewModel
+    @ObservedObject var happyHourVM: HappyHourViewModel
     @ObservedObject var spotifyVM: SpotifyViewModel
     let episodes: [HappyHourVideoModel]
     
@@ -18,19 +18,18 @@ struct EpisodeScrollView: View {
             LazyVStack{
                 ForEach(episodes, id: \.title) { episode in
                     NavigationLink {
-                        ChapterView(episode: episode, isLoading: $viewModel.apiIsLoading)
+                        ChapterView(episode: episode, isLoading: $happyHourVM.apiIsLoading, spotifyVM: spotifyVM)
                     } label: {
-                        EpisodeCell(episode: episode, isLoading: $viewModel.apiIsLoading)
+                        EpisodeCell(episode: episode, isLoading: $happyHourVM.apiIsLoading)
                     }
                     .onAppear{
                         Task {
                             if episode == episodes.last {
-                                await viewModel.loadNextPage()
-                                await spotifyVM.fetchSpotifyEpisodes(viewModel: viewModel)
-                                await spotifyVM.updateSpotifyUrls(viewModel: viewModel)
+                                await happyHourVM.loadNextPage()
+                               // await spotifyVM.updateSpotifyUrls(viewModel: viewModel)
                             }
                             
-                            try await viewModel.saveVideo(video: episode)
+                            try await happyHourVM.saveVideo(video: episode)
                         }
                     }
                 }
